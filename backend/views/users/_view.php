@@ -23,7 +23,7 @@ $columns = [
         }
     ],
     [
-        'attribute' => 'time_visit',
+        'attribute' => 'time_login',
         'format' => ['date', 'php:d.m.Y в H:i:s']
     ],
     'ip'

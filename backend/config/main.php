@@ -16,6 +16,7 @@ return [
     'modules' => [],
     'components' => [
         'user' => [
+            'class' => 'backend\components\User',
             'identityClass' => 'backend\models\Users',
             'enableAutoLogin' => true,
             'loginUrl' => ['/index/login'],

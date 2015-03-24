@@ -111,7 +111,7 @@ class Users extends ActiveRecord implements IdentityInterface
             'password' => 'Пароль',
             'sex' => 'Пол',
             'time_reg' => 'Дата регистрации',
-            'time_visit' => 'Последний визит',
+            'time_login' => 'Последняя авторизация',
             'time_total' => 'Время на сайте',
             'ip' => 'IP адрес',
             'ua' => 'User Agent',
@@ -171,19 +171,6 @@ class Users extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Обновляем данные пользователя
-     * Время последнего визита, ip, ua и общее время на сайте
-     */
-    public function updateUserData()
-    {
-        $this->time_total += $this->time_visit > (Time::real() - 300) ? Time::real() - $this->time_visit : 0;
-        $this->time_visit = Time::real();
-        $this->ip = Yii::$app->request->getUserIP();
-        $this->ua = Yii::$app->request->getUserAgent();
-        $this->save(0);
-    }
-
-    /**
      * Получаем все роли
      * @return array
      */
@@ -218,8 +205,10 @@ class Users extends ActiveRecord implements IdentityInterface
         if ($this->isNewRecord) {
             $this->password = Yii::$app->security->generatePasswordHash($this->password);
             $this->time_reg = Time::real();
-            $this->time_visit = Time::real();
+            $this->time_login = Time::real();
             $this->time_total = 0;
+            $this->ip = Yii::$app->request->getUserIP();
+            $this->ua = Yii::$app->request->getUserAgent();
         } elseif ($this->isNewRecord === false && $this->new_password) {
             $this->password = Yii::$app->security->generatePasswordHash($this->new_password);
         }
