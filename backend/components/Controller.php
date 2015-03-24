@@ -7,6 +7,9 @@ use yii\filters\AccessControl;
 
 class Controller extends \yii\web\Controller
 {
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [
@@ -15,19 +18,17 @@ class Controller extends \yii\web\Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['admin_access'],
                     ]
                 ],
             ]
         ];
     }
 
-    public function beforeAction($action)
-    {
-        /*if (Yii::$app->user->getIsGuest() === false){
-            $user = Yii::$app->user->identity;
-            $user->updateUserData();
-        }*/
-        return parent::beforeAction($action);
+    /**
+     * @inheritdoc
+     */
+    public function init(){
+        $this->layout = Yii::$app->user->getIsGuest() ? 'login' : 'main';
     }
 }

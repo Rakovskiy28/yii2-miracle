@@ -10,6 +10,8 @@ return [
             'users_view',
             'roles_crud',
             'roles_view',
+            'admin_access',
+            'user',
         ],
     ],
     'permissions_crud' => [
@@ -39,5 +41,9 @@ return [
     'user' => [
         'type' => 1,
         'description' => 'Пользователь',
+    ],
+    'admin_access' => [
+        'type' => 2,
+        'description' => 'Доступ в админку',
     ],
 ];

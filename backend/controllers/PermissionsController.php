@@ -2,11 +2,11 @@
 
 namespace backend\controllers;
 
-use common\components\VarDumper;
 use Yii;
 use backend\models\PermissionsForm;
 use backend\components\Controller;
 use yii\data\ArrayDataProvider;
+use yii\helpers\ArrayHelper;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -30,7 +30,7 @@ class PermissionsController extends Controller
      */
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -53,7 +53,7 @@ class PermissionsController extends Controller
                     ]
                 ],
             ]
-        ];
+        ]);
     }
 
     /**

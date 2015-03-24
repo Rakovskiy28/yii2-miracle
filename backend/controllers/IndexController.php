@@ -2,7 +2,6 @@
 
 namespace backend\controllers;
 
-use common\components\VarDumper;
 use Yii;
 use backend\components\Controller;
 use backend\models\LoginForm;
@@ -20,8 +19,14 @@ class IndexController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
+                        'actions' => ['index'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['admin_access']
+                    ],
+                    [
+                        'actions' => ['exit'],
+                        'allow' => true,
+                        'roles' => ['@']
                     ],
                     [
                         'actions' => ['login'],
@@ -31,7 +36,7 @@ class IndexController extends Controller
                     [
                         'actions' => ['captcha'],
                         'allow' => true
-                    ]
+                    ],
                 ],
             ]
         ];
@@ -72,7 +77,6 @@ class IndexController extends Controller
      */
     public function actionLogin()
     {
-        $this->layout = 'login';
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->redirect(['/']);

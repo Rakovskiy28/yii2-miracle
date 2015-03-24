@@ -9,6 +9,7 @@ use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 
 class UsersController extends Controller
 {
@@ -17,7 +18,7 @@ class UsersController extends Controller
      */
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -37,16 +38,9 @@ class UsersController extends Controller
                         'actions' => ['create', 'update', 'delete'],
                         'roles' => ['users_crud'],
                     ],
-                    [
-                        'allow' => true,
-                        'actions' => ['update'],
-                        'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->request->get('id') === Yii::$app->user->getId();
-                        }
-                    ]
                 ],
             ]
-        ];
+        ]);
     }
 
     /**

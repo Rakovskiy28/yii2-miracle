@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
+use yii\helpers\ArrayHelper;
 
 class RolesController extends Controller
 {
@@ -27,7 +28,7 @@ class RolesController extends Controller
      */
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -50,7 +51,7 @@ class RolesController extends Controller
                     ]
                 ],
             ]
-        ];
+        ]);
     }
 
     /**
