@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\components\VarDumper;
 use Yii;
 use backend\models\PermissionsForm;
 use backend\components\Controller;

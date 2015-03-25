@@ -30,5 +30,6 @@ class Controller extends \yii\web\Controller
      */
     public function init(){
         $this->layout = Yii::$app->user->getIsGuest() ? 'login' : 'main';
+        parent::init();
     }
 }

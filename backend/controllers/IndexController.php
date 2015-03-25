@@ -34,7 +34,7 @@ class IndexController extends Controller
                         'roles' => ['?']
                     ],
                     [
-                        'actions' => ['captcha'],
+                        'actions' => ['captcha', 'error'],
                         'allow' => true
                     ],
                 ],
