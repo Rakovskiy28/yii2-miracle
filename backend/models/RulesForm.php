@@ -1,0 +1,91 @@
+<?php
+
+namespace backend\models;
+
+use Yii;
+use yii\base\Model;
+use yii\helpers\ArrayHelper;
+use yii\helpers\VarDumper;
+use yii\rbac\Rule;
+
+class RulesForm extends Model
+{
+    /**
+     * Пространство имён
+     * @var string
+     */
+    public $namespace;
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            ['namespace', 'required'],
+            ['namespace', 'uniqueRule'],
+            ['namespace', 'validateNamespace']
+        ];
+    }
+
+    /**
+     * Проверяем уникальность правила
+     * @param $attribute
+     * @param $params
+     */
+    public function uniqueRule($attribute, $params)
+    {
+        if (Yii::$app->authManager->getRule($this->$attribute) != null) {
+            $this->addError($attribute, 'Такое правило уже существует');
+        }
+    }
+
+    /**
+     * Валидация namespace
+     * @param $attribute
+     * @param $params
+     */
+    public function validateNamespace($attribute, $params)
+    {
+        $hasError = false;
+
+        if (class_exists($this->{$attribute})) {
+            $rule = new $this->{$attribute};
+
+            if (!$rule instanceof Rule) {
+                $hasError = true;
+            }
+        } else {
+            $hasError = true;
+        }
+
+        if ($hasError === true) {
+            $this->addError($attribute, 'Неверный namespace');
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'namespace' => 'Namespace'
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function afterValidate()
+    {
+        if (parent::hasErrors() === false) {
+            $auth = Yii::$app->authManager;
+            $rule = new $this->namespace;
+            $rule->name = end(explode('\\', $this->namespace));
+
+            return $auth->add($rule);
+        }
+        parent::afterValidate();
+    }
+}

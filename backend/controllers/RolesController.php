@@ -80,7 +80,6 @@ class RolesController extends Controller
         $model = new RolesForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            sleep(3);
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -99,7 +98,6 @@ class RolesController extends Controller
         $model = $this->findRole($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            sleep(3);
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
@@ -128,7 +126,6 @@ class RolesController extends Controller
             throw new NotFoundHttpException('Роль не найдена');
         }
 
-        sleep(3);
         return $this->redirect(['index']);
     }
 
@@ -147,7 +144,6 @@ class RolesController extends Controller
             }
         }
 
-        sleep(3);
         return $this->redirect(['index']);
     }
 

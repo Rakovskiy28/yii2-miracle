@@ -37,6 +37,7 @@ AppAsset::register($this);
             'encodeLabels' => false,
             'items' => [
                 ['label' => '&raquo; Роли Пользователей', 'url' => ['/roles']],
+                ['label' => '&raquo; Правила доступа', 'url' => ['/rules']],
                 ['label' => '&raquo; Права доступа', 'url' => ['/permissions']],
                 ['label' => '&raquo; Пользователи', 'url' => ['/users']],
             ]

@@ -83,7 +83,6 @@ class PermissionsController extends Controller
         $model = new PermissionsForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            sleep(3);
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -102,7 +101,6 @@ class PermissionsController extends Controller
         $model = $this->findPermission($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            sleep(3);
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
@@ -131,7 +129,6 @@ class PermissionsController extends Controller
             throw new NotFoundHttpException('Правило не найдена');
         }
 
-        sleep(3);
         return $this->redirect(['index']);
     }
 
@@ -150,7 +147,6 @@ class PermissionsController extends Controller
             }
         }
 
-        sleep(3);
         return $this->redirect(['index']);
     }
 

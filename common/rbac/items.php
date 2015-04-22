@@ -11,6 +11,7 @@ return [
             'roles_crud',
             'roles_view',
             'admin_access',
+            'rules_crud',
             'user',
         ],
     ],
@@ -45,5 +46,9 @@ return [
     'admin_access' => [
         'type' => 2,
         'description' => 'Доступ в админку',
+    ],
+    'rules_crud' => [
+        'type' => 2,
+        'description' => 'CRUD правил доступа',
     ],
 ];

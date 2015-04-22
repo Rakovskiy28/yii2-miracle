@@ -28,6 +28,12 @@ class RolesForm extends Model
     public $last_name;
 
     /**
+     * Правило для роли
+     * @var string
+     */
+    public $rule;
+
+    /**
      * Массив прав доступа
      * @var array
      */
@@ -86,6 +92,7 @@ class RolesForm extends Model
         return [
             'name' => 'Название',
             'alias' => 'Алиас',
+            'rule' => 'Правило',
             'permissions' => 'Права доступа',
             'child_roles' => 'Дочерние роли'
         ];
@@ -114,10 +121,12 @@ class RolesForm extends Model
             $role = $auth->getRole($this->last_name);
             $role->name = $this->alias;
             $role->description = $this->name;
+            $this->rule = $auth->getRule($this->rule) !== null ? $this->rule : null;
             $auth->update($this->last_name, $role);
         } else {
             $role = $auth->createRole($this->alias);
             $role->description = $this->name;
+            $this->rule = $auth->getRule($this->rule) !== null ? $this->rule : null;
             $auth->add($role);
         }
 
@@ -132,6 +141,21 @@ class RolesForm extends Model
     public function getPermissions()
     {
         return ArrayHelper::map(Yii::$app->authManager->getPermissions(), 'name', 'description');
+    }
+
+    /**
+     * Получаем роли доступа
+     * @return array
+     */
+    public function getRules()
+    {
+        $rules = [
+            '' => 'Не выбрано'
+        ];
+        return ArrayHelper::merge(
+            $rules,
+            ArrayHelper::map(Yii::$app->authManager->getRules(), 'name', 'name')
+        );
     }
 
     /**

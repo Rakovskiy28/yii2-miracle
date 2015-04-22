@@ -22,6 +22,12 @@ use backend\models\RolesForm;
         <?= $form->field($model, 'name')->textInput(['maxlength' => 50]) ?>
     </div>
 
+    <?php if (($rules = RolesForm::getRules()) != null): ?>
+        <div class="form-group">
+            <?= $form->field($model, 'rule')->dropDownList($rules) ?>
+        </div>
+    <?php endif; ?>
+
     <?php if (($permissions = RolesForm::getPermissions()) != null): ?>
         <div class="form-group">
             <?= $form->field($model, 'permissions')->checkboxList($permissions, [
