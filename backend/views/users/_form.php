@@ -17,7 +17,7 @@ use backend\models\Users;
     <div class="form-group">
         <?= $form->field($model, 'login')->textInput(['maxlength' => 50]) ?>
     </div>
-
+у
     <?php if ($model->id === Yii::$app->user->getId()): ?>
         <div class="form-group">
             <?= $form->field($model, 'old_password')->passwordInput(['maxlength' => 50]) ?>

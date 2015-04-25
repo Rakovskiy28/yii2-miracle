@@ -13,7 +13,7 @@ class Controller extends \yii\web\Controller
     public function behaviors()
     {
         return [
-            'access' => [
+            /*'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
@@ -21,7 +21,7 @@ class Controller extends \yii\web\Controller
                         'roles' => ['admin_access'],
                     ]
                 ],
-            ]
+            ]*/
         ];
     }
 

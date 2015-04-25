@@ -4,14 +4,11 @@ namespace backend\models;
 
 use Yii;
 use yii\base\Model;
-use yii\helpers\ArrayHelper;
-use yii\helpers\VarDumper;
 use yii\rbac\Rule;
 
 class RulesForm extends Model
 {
     /**
-     * Пространство имён
      * @var string
      */
     public $namespace;
@@ -23,21 +20,8 @@ class RulesForm extends Model
     {
         return [
             ['namespace', 'required'],
-            ['namespace', 'uniqueRule'],
             ['namespace', 'validateNamespace']
         ];
-    }
-
-    /**
-     * Проверяем уникальность правила
-     * @param $attribute
-     * @param $params
-     */
-    public function uniqueRule($attribute, $params)
-    {
-        if (Yii::$app->authManager->getRule($this->$attribute) != null) {
-            $this->addError($attribute, 'Такое правило уже существует');
-        }
     }
 
     /**

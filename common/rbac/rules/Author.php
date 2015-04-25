@@ -8,15 +8,16 @@ use yii\rbac\Rule;
 class Author extends Rule{
 
     /**
+     * @var string
+     */
+    public $name = 'Author';
+
+    /**
      * @inheritdoc
      */
     public function execute($user, $item, $params)
     {
-        if (Yii::$app->user->isGuest || isset($params['id']) === false){
-            return false;
-        }
-
-        return Yii::$app->user->id == $params['id'];
+        return isset($params['id']) ? Yii::$app->user->id == $params['id'] : true;
     }
 
 }

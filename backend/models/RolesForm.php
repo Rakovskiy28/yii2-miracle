@@ -5,7 +5,6 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
-use yii\helpers\VarDumper;
 
 class RolesForm extends Model
 {
@@ -22,7 +21,7 @@ class RolesForm extends Model
     public $alias;
 
     /**
-     * Предыдущий алиас редактируемой роли
+     * Предыдущий алиас роли
      * @var string
      */
     public $last_name;
@@ -51,6 +50,18 @@ class RolesForm extends Model
     private static $child;
 
     /**
+     * @var object
+     */
+    private static $_auth;
+
+    /**
+     * @inheritdoc
+     */
+    public function init(){
+        self::$_auth = Yii::$app->authManager;
+    }
+
+    /**
      * @inheritdoc
      */
     public function rules()
@@ -59,6 +70,7 @@ class RolesForm extends Model
             [['name', 'alias'], 'required'],
             [['name', 'alias'], 'string', 'max' => 50],
             [['alias'], 'uniqueRoles'],
+            [['rule'], 'existsRule'],
             [['permissions', 'child_roles'], 'safe']
         ];
     }
@@ -75,12 +87,23 @@ class RolesForm extends Model
     }
 
     /**
+     * @param $attribute
+     * @param $params
+     */
+    public function existsRule($attribute, $params)
+    {
+        if ($this->$attribute !== false && self::$_auth->getRule($this->$attribute) === null) {
+            $this->addError($attribute, 'Такое правило не существует');
+        }
+    }
+
+    /**
      * @inheritdoc
      */
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios['update'] = ['name', 'alias', 'permissions', 'child_roles'];
+        $scenarios['update'] = ['name', 'alias', 'permissions', 'child_roles', 'rule'];
         return $scenarios;
     }
 
@@ -115,19 +138,17 @@ class RolesForm extends Model
      */
     private function saveRole()
     {
-        $auth = Yii::$app->authManager;
-
         if ($this->scenario == 'update') {
-            $role = $auth->getRole($this->last_name);
+            $role = self::$_auth->getRole($this->last_name);
             $role->name = $this->alias;
             $role->description = $this->name;
-            $this->rule = $auth->getRule($this->rule) !== null ? $this->rule : null;
-            $auth->update($this->last_name, $role);
+            $role->ruleName = $this->rule;
+            self::$_auth->update($this->last_name, $role);
         } else {
-            $role = $auth->createRole($this->alias);
+            $role = self::$_auth->createRole($this->alias);
             $role->description = $this->name;
-            $this->rule = $auth->getRule($this->rule) !== null ? $this->rule : null;
-            $auth->add($role);
+            $role->ruleName = $this->rule;
+            self::$_auth->add($role);
         }
 
         $this->savePermissions();
@@ -180,13 +201,12 @@ class RolesForm extends Model
         }
 
         static::getChild($this->alias);
-        $auth = Yii::$app->authManager;
-        $role = $auth->getRole($this->alias);
-        $auth->removeChildren($role);
+        $role = self::$_auth->getRole($this->alias);
+        self::$_auth->removeChildren($role);
 
         foreach ($this->permissions as $key => $item) {
-            if (($permission = $auth->getPermission($item)) != null) {
-                $auth->addChild($role, $permission);
+            if (($permission = self::$_auth->getPermission($item)) != null) {
+                self::$_auth->addChild($role, $permission);
             }
         }
     }
@@ -202,12 +222,11 @@ class RolesForm extends Model
         }
 
         static::getChild($this->alias);
-        $auth = Yii::$app->authManager;
-        $role = $auth->getRole($this->alias);
+        $role = self::$_auth->getRole($this->alias);
 
         foreach ($this->child_roles as $key => $item) {
-            if (($child = $auth->getRole($item)) != null) {
-                $auth->addChild($role, $child);
+            if (($child = self::$_auth->getRole($item)) != null) {
+                self::$_auth->addChild($role, $child);
             }
         }
     }
@@ -231,8 +250,8 @@ class RolesForm extends Model
     private static function getChild($id)
     {
         if (is_array(self::$child) === false) {
-            $auth = Yii::$app->authManager;
-            self::$child = $auth->getChildren($id);
+            self::$_auth = Yii::$app->authManager;
+            self::$child = self::$_auth->getChildren($id);
         }
     }
 }

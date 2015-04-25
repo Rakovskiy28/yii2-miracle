@@ -33,7 +33,7 @@ class RulesController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['index'],
-                        'roles' => ['rules_view'],
+                        'roles' => ['rules_view']
                     ],
                     [
                         'allow' => true,

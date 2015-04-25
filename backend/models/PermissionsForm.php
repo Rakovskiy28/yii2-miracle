@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 
 /**
  *
@@ -13,19 +14,19 @@ use yii\base\Model;
 class PermissionsForm extends Model
 {
     /**
-     * Название роли
+     * Название права
      * @var string
      */
     public $name;
 
     /**
-     * Алиас роли
+     * Алиас права
      * @var string
      */
     public $rule;
 
     /**
-     * Предыдущий алиас редактируемой роли
+     * Предыдущий алиас права
      * @var string
      */
     public $last_name;
@@ -38,7 +39,7 @@ class PermissionsForm extends Model
         return [
             [['name', 'rule'], 'required'],
             [['name', 'rule'], 'string', 'max' => 50],
-            [['rule'], 'uniqueRule'],
+            [['rule'], 'isUnique'],
         ];
     }
 
@@ -46,10 +47,10 @@ class PermissionsForm extends Model
      * @param string $attribute
      * @param array $params
      */
-    public function uniqueRule($attribute, $params)
+    public function isUnique($attribute, $params)
     {
         if ($this->last_name != $this->$attribute && Yii::$app->authManager->getPermission($this->$attribute) != null) {
-            $this->addError($attribute, 'Такое правило уже существует');
+            $this->addError($attribute, 'Такое право уже существует');
         }
     }
 
@@ -58,9 +59,12 @@ class PermissionsForm extends Model
      */
     public function scenarios()
     {
-        $scenarios = parent::scenarios();
-        $scenarios['update'] = ['name', 'rule'];
-        return $scenarios;
+        return ArrayHelper::merge(
+            parent::scenarios(),
+            [
+                'update' => ['name', 'rule']
+            ]
+        );
     }
 
     /**
@@ -86,7 +90,7 @@ class PermissionsForm extends Model
     }
 
     /**
-     * Сохраняем роль
+     * Сохраняем право
      * @return void
      */
     private function savePermission()
@@ -95,7 +99,6 @@ class PermissionsForm extends Model
 
         if ($this->scenario == 'update') {
             $permission = $auth->getPermission($this->last_name);
-            $permission->name = $this->rule;
             $permission->description = $this->name;
             $auth->update($this->last_name, $permission);
         } else {

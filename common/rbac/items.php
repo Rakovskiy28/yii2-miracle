@@ -12,6 +12,7 @@ return [
             'roles_view',
             'admin_access',
             'rules_crud',
+            'rules_view',
             'user',
         ],
     ],
@@ -25,7 +26,7 @@ return [
     ],
     'users_crud' => [
         'type' => 2,
-        'description' => 'Просмотр списка всех пользователей',
+        'description' => 'CRUD Пользователей',
     ],
     'users_view' => [
         'type' => 2,
@@ -42,6 +43,7 @@ return [
     'user' => [
         'type' => 1,
         'description' => 'Пользователь',
+        'ruleName' => 'Author',
     ],
     'admin_access' => [
         'type' => 2,
@@ -50,5 +52,9 @@ return [
     'rules_crud' => [
         'type' => 2,
         'description' => 'CRUD правил доступа',
+    ],
+    'rules_view' => [
+        'type' => 2,
+        'description' => 'Просмотр правил доступа',
     ],
 ];

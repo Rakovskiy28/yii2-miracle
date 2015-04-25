@@ -15,7 +15,10 @@ use backend\models\RolesForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="form-group">
-        <?= $form->field($model, 'rule')->textInput(['maxlength' => 50]) ?>
+        <?= $form->field($model, 'rule')->textInput([
+            'maxlength' => 50,
+            'disabled' => $model->scenario == 'update' ? true : false
+        ]) ?>
     </div>
 
     <div class="form-group">
