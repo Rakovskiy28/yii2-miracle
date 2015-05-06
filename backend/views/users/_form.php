@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use backend\models\Users;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Users */
@@ -14,10 +13,12 @@ use backend\models\Users;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <div class="form-group">
-        <?= $form->field($model, 'login')->textInput(['maxlength' => 50]) ?>
-    </div>
-у
+    <?php if (Yii::$app->user->can('users_crud')): ?>
+        <div class="form-group">
+            <?= $form->field($model, 'login')->textInput(['maxlength' => 50]) ?>
+        </div>
+    <?php endif; ?>
+
     <?php if ($model->id === Yii::$app->user->getId()): ?>
         <div class="form-group">
             <?= $form->field($model, 'old_password')->passwordInput(['maxlength' => 50]) ?>
@@ -39,9 +40,11 @@ use backend\models\Users;
         ]); ?>
     </div>
 
-    <div class="form-group">
-        <?= $form->field($model, 'role')->dropDownList($model->getRoles()); ?>
-    </div>
+    <?php if (Yii::$app->user->can('users_crud')): ?>
+        <div class="form-group">
+            <?= $form->field($model, 'role')->dropDownList($model->getRoles()); ?>
+        </div>
+    <?php endif; ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

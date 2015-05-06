@@ -3,11 +3,11 @@ return [
     'admin' => [
         'type' => 1,
         'description' => 'Администратор',
+        'ruleName' => 'Author',
         'children' => [
             'permissions_crud',
             'permissions_view',
             'users_crud',
-            'users_view',
             'roles_crud',
             'roles_view',
             'admin_access',
@@ -27,10 +27,6 @@ return [
     'users_crud' => [
         'type' => 2,
         'description' => 'CRUD Пользователей',
-    ],
-    'users_view' => [
-        'type' => 2,
-        'description' => 'Просмотр списка всех пользователей',
     ],
     'roles_crud' => [
         'type' => 2,

@@ -161,6 +161,7 @@ class RolesController extends Controller
             $model->name = $role->description;
             $model->alias = $role->name;
             $model->last_name = $role->name;
+            $model->rule = $role->ruleName;
             return $model;
         } else {
             throw new NotFoundHttpException('Роль не найдена');

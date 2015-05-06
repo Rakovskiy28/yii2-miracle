@@ -6,6 +6,7 @@ use Yii;
 use backend\models\Users;
 use backend\models\UsersSearch;
 use backend\components\Controller;
+use yii\helpers\VarDumper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -27,17 +28,20 @@ class UsersController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
+                'only' => ['create', 'update', 'delete'],
                 'rules' => [
-                    [
-                        'allow' => true,
-                        'actions' => ['index', 'view'],
-                        'roles' => ['users_view'],
-                    ],
                     [
                         'allow' => true,
                         'actions' => ['create', 'update', 'delete'],
                         'roles' => ['users_crud'],
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['update'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->can('user', ['id' => Yii::$app->request->get('id')]);
+                        }
+                    ]
                 ],
             ]
         ]);

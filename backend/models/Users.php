@@ -52,8 +52,16 @@ class Users extends ActiveRecord implements IdentityInterface
     {
         return [
             [['login'], 'required'],
-            ['login', 'string', 'min' => 3, 'max' => 50, 'tooShort' => 'Минимальная длина логина 3 сим.', 'tooLong' => 'Максимальная длина логина 25 сим.'],
-            ['login', 'unique', 'targetAttribute' => 'login', 'message' => 'Такой логин уже занят'],
+            ['login', 'string', 'min' => 3, 'max' => 50, 'tooShort' => 'Минимальная длина логина 3 сим.', 'tooLong' => 'Максимальная длина логина 25 сим.',
+                'when' => function ($model) {
+                    return Yii::$app->user->can('users_crud');
+                }
+            ],
+            ['login', 'unique', 'targetAttribute' => 'login', 'message' => 'Такой логин уже занят',
+                'when' => function ($model) {
+                    return Yii::$app->user->can('users_crud');
+                }
+            ],
             ['sex', 'in', 'range' => ['m', 'w'], 'message' => 'Укажите Ваш пол'],
             [['password'], 'required',
                 'when' => function ($model) {
@@ -72,7 +80,11 @@ class Users extends ActiveRecord implements IdentityInterface
             ['new_password_repeat', 'compare', 'compareAttribute' => $this->isNewRecord ? 'password' : 'new_password', 'when' => function ($model) {
                 return empty($model->new_password) === false || empty($model->password) === false;
             }, 'skipOnEmpty' => false, 'message' => 'Пароли не совпадают'],
-            ['role', 'roleExists', 'on' => 'profile']
+            ['role', 'roleExists', 'on' => 'profile',
+                'when' => function ($model) {
+                    return Yii::$app->user->can('users_crud');
+                }
+            ]
         ];
     }
 
