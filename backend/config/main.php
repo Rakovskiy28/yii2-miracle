@@ -13,22 +13,29 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'users' => [
+            'class' => 'modules\users\Module',
+            'controllerNamespace' => 'modules\users\controllers\backend',
+            'isBackend' => true
+        ],
+        'rbac' => [
+            'class' => 'modules\rbac\Module',
+            'controllerNamespace' => 'modules\rbac\controllers\backend',
+            'isBackend' => true
+        ],
+    ],
     'components' => [
         'user' => [
-            'class' => 'backend\components\User',
-            'identityClass' => 'backend\models\Users',
+            'class' => 'modules\users\components\User',
+            'identityClass' => 'modules\users\models\Users',
             'enableAutoLogin' => true,
-            'loginUrl' => ['/index/login'],
+            'loginUrl' => ['/users/default/login'],
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-                'login' => 'index/login',
-                'registration' => 'index/registration',
-                'exit' => 'index/exit',
-            ],
+            'rules' => [],
         ],
         'assetManager' => [
             'basePath' => '@webroot/assets',

@@ -4,7 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\components\Controller;
-use backend\models\LoginForm;
+use modules\users\models\LoginForm;
 use yii\filters\AccessControl;
 
 class IndexController extends Controller

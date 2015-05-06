@@ -36,9 +36,9 @@ AppAsset::register($this);
             'options' => ['class' => 'nav navbar-nav side-nav'],
             'encodeLabels' => false,
             'items' => [
-                ['label' => '&raquo; Роли Пользователей', 'url' => ['/roles']],
-                ['label' => '&raquo; Правила доступа', 'url' => ['/rules']],
-                ['label' => '&raquo; Права доступа', 'url' => ['/permissions']],
+                ['label' => '&raquo; Роли Пользователей', 'url' => ['/rbac/roles']],
+                ['label' => '&raquo; Правила доступа', 'url' => ['/rbac/rules']],
+                ['label' => '&raquo; Права доступа', 'url' => ['/rbac']],
                 ['label' => '&raquo; Пользователи', 'url' => ['/users']],
             ]
         ]);
