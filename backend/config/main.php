@@ -16,12 +16,10 @@ return [
     'modules' => [
         'users' => [
             'class' => 'modules\users\Module',
-            'controllerNamespace' => 'modules\users\controllers\backend',
             'isBackend' => true
         ],
         'rbac' => [
             'class' => 'modules\rbac\Module',
-            'controllerNamespace' => 'modules\rbac\controllers\backend',
             'isBackend' => true
         ],
     ],
@@ -30,7 +28,7 @@ return [
             'class' => 'modules\users\components\User',
             'identityClass' => 'modules\users\models\Users',
             'enableAutoLogin' => true,
-            'loginUrl' => ['/users/default/login'],
+            'loginUrl' => ['/users/guest/login'],
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,

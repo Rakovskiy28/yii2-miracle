@@ -70,7 +70,7 @@ class LoginForm extends Model
     public function captchaValidate($attribute, $params)
     {
         $validator = Validator::createValidator('captcha', $this, $attribute, [
-            'captchaAction' => 'index/captcha'
+            'captchaAction' => 'users/guest/captcha'
         ]);
 
         if ($validator->validate($this->verifyCode) === false) {

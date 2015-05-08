@@ -22,7 +22,7 @@ $this->title = 'Авторизация';
 
         <?php if (isset($model->_user->error_auth) && $model->_user->error_auth >= 3): ?>
             <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                'captchaAction' => 'index/captcha',
+                'captchaAction' => 'guest/captcha',
                 'template' => '<div class="form-group input-group">{input}<span class="input-group-addon">{image}</span></div>',
             ]) ?>
         <?php endif; ?>

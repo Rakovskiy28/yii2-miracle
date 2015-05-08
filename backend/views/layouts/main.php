@@ -51,14 +51,14 @@ AppAsset::register($this);
                     [
                         'label' => '<i class="glyphicon glyphicon-cog"></i> Настройки',
                         'url' => [
-                            '/users/update',
+                            '/users/default/update',
                             'id' => Yii::$app->user->identity->getId()
                         ]
                     ],
                     '<li class="divider"></li>',
                     [
                         'label' => '<i class="glyphicon glyphicon-log-out"></i> Выход',
-                        'url' => ['/index/exit']
+                        'url' => ['/users/user/logout']
                     ],
                 ]],
             ]
