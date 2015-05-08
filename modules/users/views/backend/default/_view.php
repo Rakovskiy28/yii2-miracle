@@ -34,7 +34,7 @@ if (Yii::$app->user->can('users_crud')) {
         'class' => 'yii\grid\ActionColumn',
         'template' => '<div class="text-center">{view} {update} {delete}</div>'
     ];
-}else{
+} else {
     $columns[] = [
         'class' => 'yii\grid\ActionColumn',
         'template' => '<div class="text-center">{view}</div>'

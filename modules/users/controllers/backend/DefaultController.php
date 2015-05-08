@@ -27,8 +27,12 @@ class DefaultController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['create', 'update', 'delete'],
                 'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view'],
+                        'roles' => ['backend_access']
+                    ],
                     [
                         'allow' => true,
                         'actions' => ['create', 'update', 'delete'],
@@ -80,7 +84,7 @@ class DefaultController extends Controller
     public function actionCreate()
     {
         $model = new Users();
-        $model->scenario = 'profile';
+        $model->scenario = $model::SCENARIO_PROFILE;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -99,7 +103,7 @@ class DefaultController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->scenario = 'profile';
+        $model->scenario = $model::SCENARIO_PROFILE;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -129,6 +133,10 @@ class DefaultController extends Controller
      */
     protected function findModel($id)
     {
+        if (Yii::$app->user->id == $id) {
+            return Yii::$app->user->identity;
+        }
+
         if (($model = Users::findOne($id)) !== null) {
             return $model;
         } else {

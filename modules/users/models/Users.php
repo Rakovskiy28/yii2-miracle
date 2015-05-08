@@ -12,6 +12,7 @@ use yii\helpers\ArrayHelper;
 
 class Users extends ActiveRecord implements IdentityInterface
 {
+    const SCENARIO_PROFILE = 'profile';
 
     /**
      * Старый пароль
@@ -140,7 +141,7 @@ class Users extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne($id);
+        return self::findOne($id);
     }
 
     /**
@@ -235,7 +236,7 @@ class Users extends ActiveRecord implements IdentityInterface
      */
     public function afterSave($insert, $changedAttributes)
     {
-        if ($this->scenario === 'profile') {
+        if ($this->scenario === self::SCENARIO_PROFILE) {
             $this->saveRole();
         }
         parent::afterSave($insert, $changedAttributes);

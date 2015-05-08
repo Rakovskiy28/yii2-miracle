@@ -57,7 +57,8 @@ class RolesForm extends Model
     /**
      * @inheritdoc
      */
-    public function init(){
+    public function init()
+    {
         self::$_auth = Yii::$app->authManager;
     }
 
@@ -200,7 +201,7 @@ class RolesForm extends Model
             $this->permissions = [];
         }
 
-        static::getChild($this->alias);
+        self::getChild($this->alias);
         $role = self::$_auth->getRole($this->alias);
         self::$_auth->removeChildren($role);
 
@@ -221,7 +222,7 @@ class RolesForm extends Model
             $this->child_roles = [];
         }
 
-        static::getChild($this->alias);
+        self::getChild($this->alias);
         $role = self::$_auth->getRole($this->alias);
 
         foreach ($this->child_roles as $key => $item) {

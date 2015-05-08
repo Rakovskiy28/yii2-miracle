@@ -13,6 +13,8 @@ use yii\helpers\ArrayHelper;
  */
 class PermissionsForm extends Model
 {
+    const SCENARIO_UPDATE = 'update';
+
     /**
      * Название права
      * @var string
@@ -59,12 +61,10 @@ class PermissionsForm extends Model
      */
     public function scenarios()
     {
-        return ArrayHelper::merge(
-            parent::scenarios(),
-            [
-                'update' => ['name', 'rule']
-            ]
-        );
+        return [
+            self::SCENARIO_DEFAULT => ['name', 'rule'],
+            self::SCENARIO_UPDATE => ['name', 'rule'],
+        ];
     }
 
     /**
@@ -97,7 +97,7 @@ class PermissionsForm extends Model
     {
         $auth = Yii::$app->authManager;
 
-        if ($this->scenario == 'update') {
+        if ($this->scenario == self::SCENARIO_UPDATE) {
             $permission = $auth->getPermission($this->last_name);
             $permission->description = $this->name;
             $auth->update($this->last_name, $permission);

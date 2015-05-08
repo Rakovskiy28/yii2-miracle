@@ -10,9 +10,9 @@ return [
             'users_crud',
             'roles_crud',
             'roles_view',
-            'admin_access',
             'rules_crud',
             'rules_view',
+            'backend_access',
             'user',
         ],
     ],
@@ -40,10 +40,9 @@ return [
         'type' => 1,
         'description' => 'Пользователь',
         'ruleName' => 'Author',
-    ],
-    'admin_access' => [
-        'type' => 2,
-        'description' => 'Доступ в админку',
+        'children' => [
+            'backend_access',
+        ],
     ],
     'rules_crud' => [
         'type' => 2,
@@ -52,5 +51,9 @@ return [
     'rules_view' => [
         'type' => 2,
         'description' => 'Просмотр правил доступа',
+    ],
+    'backend_access' => [
+        'type' => 2,
+        'description' => 'Доступ в админку',
     ],
 ];

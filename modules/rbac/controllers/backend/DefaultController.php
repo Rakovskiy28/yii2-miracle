@@ -2,7 +2,7 @@
 
 namespace modules\rbac\controllers\backend;
 
-use common\components\VarDumper;
+use common\helpers\VarDumper;
 use Yii;
 use modules\rbac\models\PermissionsForm;
 use backend\components\Controller;
