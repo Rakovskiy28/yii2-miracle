@@ -6,6 +6,10 @@ use Yii;
 use yii\base\Model;
 use yii\rbac\Rule;
 
+/**
+ * Class RulesForm
+ * @package modules\rbac\models
+ */
 class RulesForm extends Model
 {
     /**

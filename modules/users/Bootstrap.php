@@ -4,6 +4,10 @@ namespace modules\users;
 
 use yii\base\BootstrapInterface;
 
+/**
+ * Class Bootstrap
+ * @package modules\users
+ */
 class Bootstrap implements BootstrapInterface
 {
     /**

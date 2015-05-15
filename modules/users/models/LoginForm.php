@@ -10,6 +10,22 @@ use yii\helpers\VarDumper;
 use yii\validators\Validator;
 use yii\web\User;
 
+/**
+ * Class LoginForm
+ * @package modules\users\models
+ *
+ * @property string $id
+ * @property string $login
+ * @property string $password
+ * @property string $auth_key
+ * @property string $time_reg
+ * @property string $time_login
+ * @property string $ip
+ * @property string $ua
+ * @property string $role
+ * @property string $sex
+ * @property string $error_auth
+ */
 class LoginForm extends Model
 {
     /**

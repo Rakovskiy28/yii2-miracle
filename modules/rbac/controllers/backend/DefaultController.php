@@ -13,6 +13,10 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+/**
+ * Class DefaultController
+ * @package modules\rbac\controllers\backend
+ */
 class DefaultController extends Controller
 {
     /**

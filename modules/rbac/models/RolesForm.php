@@ -6,8 +6,15 @@ use Yii;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
 
+/**
+ * Class PermissionsForm
+ * @package modules\rbac\models
+ */
 class RolesForm extends Model
 {
+    /**
+     * Сценарий редактирования
+     */
     const SCENARIO_UPDATE = 'update';
 
     /**

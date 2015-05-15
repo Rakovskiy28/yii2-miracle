@@ -2,14 +2,29 @@
 
 namespace modules\users\models;
 
-use backend\models\NotSupportedException;
-use yii;
+use Yii;
 use common\helpers\Time;
 use yii\helpers\Html;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yii\helpers\ArrayHelper;
 
+/**
+ * Class Users
+ * @package modules\users\models
+ *
+ * @property string $id
+ * @property string $login
+ * @property string $password
+ * @property string $auth_key
+ * @property string $time_reg
+ * @property string $time_login
+ * @property string $ip
+ * @property string $ua
+ * @property string $role
+ * @property string $sex
+ * @property string $error_auth
+ */
 class Users extends ActiveRecord implements IdentityInterface
 {
     const SCENARIO_PROFILE = 'profile';

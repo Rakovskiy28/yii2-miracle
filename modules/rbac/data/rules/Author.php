@@ -5,6 +5,10 @@ namespace modules\rbac\data\rules;
 use Yii;
 use yii\rbac\Rule;
 
+/**
+ * Class Author
+ * @package modules\rbac\data\rules
+ */
 class Author extends Rule{
 
     /**

@@ -7,6 +7,10 @@ use backend\components\Controller;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
 
+/**
+ * Class DefaultController
+ * @package modules\main\controllers\backend
+ */
 class DefaultController extends Controller
 {
     /**

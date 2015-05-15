@@ -12,6 +12,10 @@ use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 use yii\helpers\ArrayHelper;
 
+/**
+ * Class RulesController
+ * @package modules\rbac\controllers\backend
+ */
 class RulesController extends Controller
 {
     /**

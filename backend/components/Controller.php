@@ -5,8 +5,15 @@ namespace backend\components;
 use Yii;
 use yii\filters\AccessControl;
 
+/**
+ * Class Controller
+ * @package backend\components
+ */
 class Controller extends \yii\web\Controller
 {
+    /**
+     * @inheritdoc
+     */
     public function behaviors()
     {
         return [

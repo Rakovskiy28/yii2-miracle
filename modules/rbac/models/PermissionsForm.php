@@ -7,12 +7,14 @@ use yii\base\Model;
 use yii\helpers\ArrayHelper;
 
 /**
- *
- * @property string $name
- * @property string $rule
+ * Class PermissionsForm
+ * @package modules\rbac\models
  */
 class PermissionsForm extends Model
 {
+    /**
+     * Сценарий редактирования
+     */
     const SCENARIO_UPDATE = 'update';
 
     /**

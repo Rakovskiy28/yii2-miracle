@@ -5,6 +5,10 @@ namespace modules\users\components;
 use Yii;
 use common\helpers\Time;
 
+/**
+ * Class User
+ * @package modules\users\components
+ */
 class User extends \yii\web\User
 {
     /**
