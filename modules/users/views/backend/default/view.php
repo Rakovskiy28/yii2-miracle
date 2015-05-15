@@ -46,7 +46,6 @@ $this->params['breadcrumbs'][] = $model->login;
                 'attribute' => 'time_login',
                 'format' => ['date', 'php:d.m.Y в H:i:s']
             ],
-            'time_total',
             'ip',
             'ua'
         ],

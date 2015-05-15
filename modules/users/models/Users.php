@@ -126,7 +126,6 @@ class Users extends ActiveRecord implements IdentityInterface
             'sex' => 'Пол',
             'time_reg' => 'Дата регистрации',
             'time_login' => 'Последняя авторизация',
-            'time_total' => 'Время на сайте',
             'ip' => 'IP адрес',
             'ua' => 'User Agent',
             'role' => 'Роль',
@@ -220,7 +219,6 @@ class Users extends ActiveRecord implements IdentityInterface
             $this->password = Yii::$app->security->generatePasswordHash($this->password);
             $this->time_reg = Time::real();
             $this->time_login = Time::real();
-            $this->time_total = 0;
             $this->ip = Yii::$app->request->getUserIP();
             $this->ua = Yii::$app->request->getUserAgent();
         } elseif ($this->isNewRecord === false && $this->new_password) {

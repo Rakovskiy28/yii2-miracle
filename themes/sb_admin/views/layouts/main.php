@@ -24,6 +24,18 @@ AppAsset::register($this);
 
     <div id="wrapper">
         <?php
+        $items = [];
+        if (Yii::$app->user->can('roles_view')){
+            $items[] = ['label' => '&raquo; Роли Пользователей', 'url' => ['/rbac/roles']];
+        }
+        if (Yii::$app->user->can('rules_view')){
+            $items[] = ['label' => '&raquo; Правила доступа', 'url' => ['/rbac/rules']];
+        }
+        if (Yii::$app->user->can('permissions_view')){
+            $items[] = ['label' => '&raquo; Права доступа', 'url' => ['/rbac']];
+        }
+        $items[] = ['label' => '&raquo; Пользователи', 'url' => ['/users']];
+
         NavBar::begin([
             'brandLabel' => Yii::$app->name,
             'brandUrl' => ['/'],
@@ -35,12 +47,7 @@ AppAsset::register($this);
         echo Nav::widget([
             'options' => ['class' => 'nav navbar-nav side-nav'],
             'encodeLabels' => false,
-            'items' => [
-                ['label' => '&raquo; Роли Пользователей', 'url' => ['/rbac/roles']],
-                ['label' => '&raquo; Правила доступа', 'url' => ['/rbac/rules']],
-                ['label' => '&raquo; Права доступа', 'url' => ['/rbac']],
-                ['label' => '&raquo; Пользователи', 'url' => ['/users']],
-            ]
+            'items' => $items
         ]);
 
         echo Nav::widget([
