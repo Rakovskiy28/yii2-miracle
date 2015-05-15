@@ -5,6 +5,7 @@ namespace modules\main\controllers\backend;
 use Yii;
 use backend\components\Controller;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 
 class DefaultController extends Controller
 {
@@ -13,22 +14,17 @@ class DefaultController extends Controller
      */
     public function behaviors()
     {
-        return [
+        return ArrayHelper::merge(parent::behaviors(), [
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index'],
                         'allow' => true,
-                        'roles' => ['backend_access']
-                    ],
-                    [
-                        'actions' => ['error'],
-                        'allow' => true
+                        'actions' => ['error']
                     ],
                 ],
             ]
-        ];
+        ]);
     }
 
     /**

@@ -11,7 +11,11 @@ return [
     'name' => 'Rakovskiy',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'modules\main\Bootstrap',
+        'modules\users\Bootstrap',
+    ],
     'modules' => [
         'main' => [
             'class' => 'modules\main\Module',
@@ -36,9 +40,6 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-                '' => 'main/default/index'
-            ],
         ],
         'assetManager' => [
             'basePath' => '@webroot/assets',
