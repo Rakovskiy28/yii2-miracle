@@ -1,12 +1,12 @@
 <?php
 
-namespace backend\assets;
+namespace themes\sb_admin\assets;
 
 use yii\web\AssetBundle;
 
 class AppAsset extends AssetBundle
 {
-    public $sourcePath = '@backend/assets';
+    public $sourcePath = '@themes/sb_admin/assets';
     public $css = [
         'css/main.css',
         'css/sb-admin.css',

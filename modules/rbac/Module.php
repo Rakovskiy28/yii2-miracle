@@ -2,7 +2,7 @@
 
 namespace modules\rbac;
 
-class Module extends \backend\components\Module
+class Module extends \common\components\Module
 {
 
 }

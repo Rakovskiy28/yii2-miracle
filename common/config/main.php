@@ -12,9 +12,9 @@ return [
             'defaultRoles' => [
                 'user'
             ],
-            'itemFile' => '@common/rbac/items.php',
-            'assignmentFile' => '@common/rbac/assignments.php',
-            'ruleFile' => '@common/rbac/rules.php',
+            'itemFile' => '@modules/rbac/data/items.php',
+            'assignmentFile' => '@modules/rbac/data/assignments.php',
+            'ruleFile' => '@modules/rbac/data/rules.php',
         ],
 
     ],

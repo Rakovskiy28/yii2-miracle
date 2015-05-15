@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\components;
+namespace common\components;
 
 class Module extends \yii\base\Module
 {

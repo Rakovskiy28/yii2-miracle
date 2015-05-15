@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\NavBar;
-use backend\assets\LoginAsset;
+use themes\sb_admin\assets\LoginAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */

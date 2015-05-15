@@ -1,5 +1,4 @@
 <?php
-require(__DIR__ . '/container.php');
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
@@ -9,11 +8,15 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
-    'name' => 'Rakovskiy',
+    'name' => 'Rakovskiy app',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'main' => [
+            'class' => 'modules\main\Module',
+            'isBackend' => true
+        ],
         'users' => [
             'class' => 'modules\users\Module',
             'isBackend' => true
@@ -33,7 +36,9 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [],
+            'rules' => [
+                '' => 'main/default/index'
+            ],
         ],
         'assetManager' => [
             'basePath' => '@webroot/assets',
@@ -52,7 +57,10 @@ return [
             ],
         ],
         'errorHandler' => [
-            'errorAction' => 'index/error',
+            'errorAction' => 'main/default/error',
+        ],
+        'view' => [
+            'theme' => 'themes\sb_admin\Theme'
         ],
     ],
     'params' => $params,

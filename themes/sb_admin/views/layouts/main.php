@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use backend\assets\AppAsset;
+use themes\sb_admin\assets\AppAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -81,6 +81,7 @@ AppAsset::register($this);
                         ],
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []
                     ]) ?>
+
                     <?= $content ?>
                 </div>
             </div>
