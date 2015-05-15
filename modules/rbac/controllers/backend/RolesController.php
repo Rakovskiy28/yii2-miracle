@@ -116,7 +116,7 @@ class RolesController extends Controller
     public function actionDelete($id)
     {
         if (in_array($id, $this->default)) {
-            throw new ForbiddenHttpException('Данная роль по умолчанию, все действия запрещены.');
+            throw new ForbiddenHttpException('Вы не можете удалить данную роль!');
         }
 
         $auth = Yii::$app->authManager;
@@ -157,7 +157,8 @@ class RolesController extends Controller
     protected function findRole($id)
     {
         if (($role = Yii::$app->authManager->getRole($id)) !== null) {
-            $model = new RolesForm(['scenario' => 'update']);
+            $model = new RolesForm();
+            $model->scenario = $model::SCENARIO_UPDATE;
             $model->name = $role->description;
             $model->alias = $role->name;
             $model->last_name = $role->name;

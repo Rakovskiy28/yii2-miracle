@@ -15,7 +15,11 @@ use modules\rbac\models\RolesForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="form-group">
-        <?= $form->field($model, 'alias')->textInput(['maxlength' => 50]) ?>
+        <?= $form->field($model, 'alias')->textInput(
+            [
+                'maxlength' => 50,
+                'disabled' => $model->scenario === $model::SCENARIO_UPDATE ? true : false
+            ]) ?>
     </div>
 
     <div class="form-group">

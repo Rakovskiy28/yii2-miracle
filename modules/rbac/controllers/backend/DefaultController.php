@@ -24,6 +24,11 @@ class DefaultController extends Controller
         'permissions_view',
         'roles_crud',
         'roles_view',
+        'rules_view',
+        'rules_crud',
+        'users_view',
+        'users_crud',
+        'backend_access',
     ];
 
     /**
@@ -119,7 +124,7 @@ class DefaultController extends Controller
     public function actionDelete($id)
     {
         if (in_array($id, $this->default)) {
-            throw new ForbiddenHttpException('Данное правило по умолчанию, все действия запрещены.');
+            throw new ForbiddenHttpException('Вы не можете удалить данное правило!');
         }
 
         $auth = Yii::$app->authManager;
@@ -159,10 +164,6 @@ class DefaultController extends Controller
      */
     protected function findPermission($id)
     {
-        if (in_array($id, $this->default)) {
-            throw new ForbiddenHttpException('Данное правило по умолчанию, все действия запрещены.');
-        }
-
         if (($rule = Yii::$app->authManager->getPermission($id)) !== null) {
             $model = new PermissionsForm(['scenario' => 'update']);
             $model->name = $rule->description;

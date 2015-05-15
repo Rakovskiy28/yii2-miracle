@@ -8,6 +8,8 @@ use yii\helpers\ArrayHelper;
 
 class RolesForm extends Model
 {
+    const SCENARIO_UPDATE = 'update';
+
     /**
      * Название роли
      * @var string
@@ -104,7 +106,7 @@ class RolesForm extends Model
     public function scenarios()
     {
         $scenarios = parent::scenarios();
-        $scenarios['update'] = ['name', 'alias', 'permissions', 'child_roles', 'rule'];
+        $scenarios[self::SCENARIO_UPDATE] = ['name', 'alias', 'permissions', 'child_roles', 'rule'];
         return $scenarios;
     }
 
@@ -139,7 +141,7 @@ class RolesForm extends Model
      */
     private function saveRole()
     {
-        if ($this->scenario == 'update') {
+        if ($this->scenario == self::SCENARIO_UPDATE) {
             $role = self::$_auth->getRole($this->last_name);
             $role->name = $this->alias;
             $role->description = $this->name;
