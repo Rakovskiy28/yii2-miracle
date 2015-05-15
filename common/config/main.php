@@ -1,7 +1,11 @@
 <?php
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'defaultRoute' => 'index/index',
+    'defaultRoute' => 'main/default',
+    'bootstrap' => [
+        'modules\main\Bootstrap',
+        'modules\users\Bootstrap',
+    ],
     'language' => 'ru',
     'components' => [
         'cache' => [

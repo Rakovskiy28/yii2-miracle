@@ -11,11 +11,7 @@ return [
     'name' => 'Rakovskiy',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => [
-        'log',
-        'modules\main\Bootstrap',
-        'modules\users\Bootstrap',
-    ],
+    'bootstrap' => ['log'],
     'modules' => [
         'main' => [
             'class' => 'modules\main\Module',
