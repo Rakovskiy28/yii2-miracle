@@ -40,9 +40,6 @@ return [
         'type' => 1,
         'description' => 'Пользователь',
         'ruleName' => 'Author',
-        'children' => [
-            'backend_access',
-        ],
     ],
     'rules_crud' => [
         'type' => 2,

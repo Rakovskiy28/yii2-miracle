@@ -87,6 +87,7 @@ class LoginForm extends Model
      */
     public function userValidate()
     {
+        $auth = Yii::$app->authManager;
         $this->_user = Users::find()->where('login=LOWER(:login)', [':login' => $this->login])->one();
 
         if ($this->_user === null) {
@@ -96,6 +97,8 @@ class LoginForm extends Model
             $this->_user->save();
             $this->password = null;
             $this->addError('password', 'Неверный пароль');
+        } elseif (isset($auth->getPermissionsByUser($this->_user->id)['backend_access']) === false){
+            $this->addError('login', 'Недостаточно прав');
         }
     }
 
