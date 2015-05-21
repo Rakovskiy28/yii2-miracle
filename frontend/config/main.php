@@ -8,10 +8,14 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-    'name'=> 'Rakovskiy',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'main' => [
+            'class' => 'modules\main\Module',
+        ],
+    ],
     'components' => [
         'user' => [
             'identityClass' => 'frontend\models\User',
@@ -41,6 +45,9 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'index/error',
+        ],
+        'view' => [
+            'theme' => 'themes\bare\Theme'
         ],
     ],
     'params' => $params,

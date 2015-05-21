@@ -2,6 +2,8 @@
 
 namespace common\components;
 
+use yii\base\View;
+
 class Module extends \yii\base\Module
 {
     /**
