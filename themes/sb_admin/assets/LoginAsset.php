@@ -8,12 +8,10 @@ class LoginAsset extends AssetBundle
 {
     public $sourcePath = '@themes/sb_admin/assets';
     public $css = [
-        'css/login.css',
+        'css/login.css'
     ];
-    public $js = [
-    ];
+    public $js = [];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'yii\web\YiiAsset'
     ];
 }

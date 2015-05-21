@@ -35,21 +35,21 @@ class Theme extends \yii\base\Theme
         Yii::$container->set('yii\grid\ActionColumn', [
             'buttons' => [
                 'view' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-eye-open"></i>', $url, [
+                    return Html::a('<i class="fa fa-eye"></i>', $url, [
                         'class' => 'btn btn-xs btn-info',
                         'title' => 'Просмотр',
                         'data-pjax' => 0,
                     ]);
                 },
                 'update' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-pencil"></i>', $url, [
+                    return Html::a('<i class="fa fa-edit"></i>', $url, [
                         'class' => 'btn btn-xs btn-warning',
                         'title' => 'Изменить',
                         'data-pjax' => 0,
                     ]);
                 },
                 'delete' => function ($url, $model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-trash"></i>', $url, [
+                    return Html::a('<i class="fa fa-trash-o"></i>', $url, [
                         'class' => 'btn btn-xs btn-danger', 'data-method' => 'post',
                         'title' => 'Удалить',
                         'data' => [

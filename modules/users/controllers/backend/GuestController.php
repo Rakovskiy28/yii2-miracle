@@ -6,7 +6,6 @@ use Yii;
 use modules\users\models\LoginForm;
 use backend\components\Controller;
 use yii\filters\AccessControl;
-use yii\helpers\ArrayHelper;
 
 class GuestController extends Controller
 {
@@ -15,7 +14,7 @@ class GuestController extends Controller
      */
     public function behaviors()
     {
-        return ArrayHelper::merge(parent::behaviors(), [
+        return [
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
@@ -30,7 +29,7 @@ class GuestController extends Controller
                     ]
                 ],
             ]
-        ]);
+        ];
     }
 
     /**
