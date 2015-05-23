@@ -3,36 +3,35 @@
 
 Переходим в папку с проектом
     
-    $ cd path/to/project
-
+- `cd path/to/project`
 
 Устанавливаем asset плагин
     
-    $ composer global require "fxp/composer-asset-plugin:1.0.0"
+- `composer global require "fxp/composer-asset-plugin:1.0.0"`
 
 
 Устанавливаем composer
 
-    $ composer install
+- `composer install`
 
 
 Устанавливаем ФВ
 
-    $ php init
+- `php init`
 
 
 Выставляем права доступа на RBAC
 
-    $ chmod 666 modules/rbac/data/assignments.php
-    $ chmod 666 modules/rbac/data/items.php
-    $ chmod 666 modules/rbac/data/rules.php
+- `chmod 666 modules/rbac/data/assignments.php`
+- `chmod 666 modules/rbac/data/items.php`
+- `chmod 666 modules/rbac/data/rules.php`
 
 
 Прописываем данные к БД в /common/config/main-local.php
 
 Выполняем миграции
     
-    $ php yii migrate --migrationPath=@modules/users/migrations
+- `php yii migrate --migrationPath=@modules/users/migrations`
 
 
 Если у вас Nginx прописываем конфиг
