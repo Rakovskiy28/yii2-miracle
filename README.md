@@ -38,48 +38,48 @@
 Если у вас Nginx прописываем конфиг
 
     server {
-        charset utf-8;
-      
-        listen 80;
-        listen [::]:80;
-      
-        server_name yii.loc www.yii.loc;
-        root        <Указать директорию с сайтом>;
-        index       index.php;
-      
-        location / {
-            if ($request_uri ~ "^/backend"){
-                rewrite ^/backend/(.*)$ /backend/web/$1;
-            }
-            if ($request_uri !~ "^/backend"){
-                rewrite ^(.*)$ /frontend/web/$1;
-            }
-        }
-      
-        location /frontend/web/ {
-            if (!-e $request_filename){
-                rewrite ^(.*)$ /frontend/web/index.php;
-            }
-        }
-      
-        location /backend/web/ {
-            if (!-e $request_filename){
-                rewrite ^(.*)$ /backend/web/index.php;
-            }
-        }
-      
-        location ~ \.php$ {
-                try_files $uri =404;
-                fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                fastcgi_pass unix:/var/run/php5-fpm.sock;
-                fastcgi_index index.php;
-                include fastcgi_params;
-        }
+    	charset utf-8;
+    
+    	listen 80;
+    	listen [::]:80;
+    
+    	server_name example.loc www.example.loc;
+    	root        /path/to/example.loc;
+    	index       index.php;
+    
+    	location / {
+    		if ($request_uri ~ "^/backend"){
+    			rewrite ^/backend/(.*)$ /backend/web/$1;
+    		}
+    		if ($request_uri !~ "^/backend"){
+    			rewrite ^(.*)$ /frontend/web/$1;
+    		}
+    	}
+    
+    	location /frontend/web/ {
+    		if (!-e $request_filename){
+    			rewrite ^(.*)$ /frontend/web/index.php;
+    		}
+    	}
+    
+    	location /backend/web/ {
+    		if (!-e $request_filename){
+    			rewrite ^(.*)$ /backend/web/index.php;
+    		}
+    	}
+    
+    	location ~ \.php$ {
+            	try_files $uri =404;
+            	fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            	fastcgi_pass unix:/var/run/php5-fpm.sock;
+            	fastcgi_index index.php;
+            	include fastcgi_params;
+        	}
     }
 
 ###Внимание!
-Не забудьте указать директорию с сайтом в root
+Не забудьте заменить директорию с сайтом "/path/to/example.loc" и домен "example.loc"
 
 ####Доступ в админку
     
-Переходим на **domain.com/backend** Логин **admin** пароль **admin**
+Переходим на **example.loc/backend** Логин **admin** пароль **admin**

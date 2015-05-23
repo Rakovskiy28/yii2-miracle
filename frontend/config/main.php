@@ -18,7 +18,8 @@ return [
     ],
     'components' => [
         'request' => [
-            'baseUrl' => ''
+            'baseUrl' => '',
+            'cookieValidationKey' => '-9rZMynEaQwPy0Qv1HZSCwgeFUlB9Unz'
         ],
         'errorHandler' => [
             'errorAction' => 'index/error',
