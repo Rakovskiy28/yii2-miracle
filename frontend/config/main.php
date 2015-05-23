@@ -17,31 +17,8 @@ return [
         ],
     ],
     'components' => [
-        'user' => [
-            'identityClass' => 'frontend\models\User',
-            'enableAutoLogin' => true,
-        ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
-        'assetManager' => [
-            'basePath' => '@webroot/assets',
-            'baseUrl' => '@web/assets'
-        ],
         'request' => [
             'baseUrl' => ''
-        ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
         ],
         'errorHandler' => [
             'errorAction' => 'index/error',

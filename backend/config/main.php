@@ -9,7 +9,6 @@ $params = array_merge(
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
-    'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
         'main' => [
@@ -26,31 +25,8 @@ return [
         ],
     ],
     'components' => [
-        'user' => [
-            'class' => 'modules\users\components\User',
-            'identityClass' => 'modules\users\models\Users',
-            'enableAutoLogin' => true,
-            'loginUrl' => ['/users/guest/login'],
-        ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-        ],
-        'assetManager' => [
-            'basePath' => '@webroot/assets',
-            'baseUrl' => '@web/assets'
-        ],
         'request' => [
             'baseUrl' => '/backend'
-        ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
         ],
         'errorHandler' => [
             'errorAction' => 'main/default/error',
