@@ -169,7 +169,7 @@ class RolesForm extends Model
      * Получаем права доступа
      * @return array
      */
-    public function getPermissions()
+    public static function getPermissions()
     {
         return ArrayHelper::map(Yii::$app->authManager->getPermissions(), 'name', 'description');
     }
@@ -178,7 +178,7 @@ class RolesForm extends Model
      * Получаем роли доступа
      * @return array
      */
-    public function getRules()
+    public static function getRules()
     {
         $rules = [
             '' => 'Не выбрано'
@@ -193,7 +193,7 @@ class RolesForm extends Model
      * Получаем роли
      * @return array
      */
-    public function getRoles($id)
+    public static function getRoles($id)
     {
         $roles = ArrayHelper::map(Yii::$app->authManager->getRoles(), 'name', 'description');
         unset($roles[$id]);
@@ -247,7 +247,7 @@ class RolesForm extends Model
      * @param string $value
      * @return bool
      */
-    public function isChild($id, $value)
+    public static function isChild($id, $value)
     {
         self::getChild($id);
         return isset(self::$child[$value]);
