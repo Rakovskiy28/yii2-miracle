@@ -26,8 +26,7 @@ return [
     ],
     'components' => [
         'request' => [
-            'baseUrl' => '/backend',
-            'cookieValidationKey' => '-9rZMynEaQwPy0Qv1HZSCwgeFUlB9Unz'
+            'baseUrl' => '/backend'
         ],
         'errorHandler' => [
             'errorAction' => 'main/default/error',
