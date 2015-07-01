@@ -21,7 +21,7 @@ return [
             'baseUrl' => ''
         ],
         'errorHandler' => [
-            'errorAction' => 'index/error',
+            'errorAction' => 'main/default/error',
         ],
         'view' => [
             'theme' => 'themes\bare\Theme'
