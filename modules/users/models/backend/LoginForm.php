@@ -1,8 +1,8 @@
 <?php
 
-namespace modules\users\models;
+namespace modules\users\models\backend;
 
-use modules\users\models\Users;
+use modules\users\models\backend\Users;
 use Yii;
 use yii\base\Model;
 use yii\captcha\CaptchaValidator;

@@ -2,7 +2,7 @@
 
 use yii\db\Schema;
 use yii\db\Migration;
-use modules\users\models\Users;
+use modules\users\models\backend\Users;
 use common\helpers\Time;
 
 class m150515_130844_create_table_users extends Migration

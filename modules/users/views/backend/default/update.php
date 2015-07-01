@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model \modules\users\models\Users */
+/* @var $model \modules\users\models\backend\Users */
 
 $this->title = 'Пользователи';
 $this->params['pageTitle'] = $this->title;

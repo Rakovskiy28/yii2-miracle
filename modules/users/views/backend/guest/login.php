@@ -5,7 +5,7 @@ use yii\captcha\Captcha;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \modules\users\models\LoginForm; */
+/* @var $model \modules\users\models\backend\LoginForm; */
 
 $this->title = 'Авторизация';
 ?>

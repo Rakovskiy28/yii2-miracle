@@ -3,7 +3,7 @@
 namespace modules\users\controllers\backend;
 
 use Yii;
-use modules\users\models\LoginForm;
+use modules\users\models\backend\LoginForm;
 use backend\components\Controller;
 use yii\filters\AccessControl;
 

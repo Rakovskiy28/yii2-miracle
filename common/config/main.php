@@ -11,7 +11,7 @@ return [
     'components' => [
         'user' => [
             'class' => 'modules\users\components\User',
-            'identityClass' => 'modules\users\models\Users',
+            'identityClass' => 'modules\users\models\backend\Users',
             'enableAutoLogin' => true,
             'loginUrl' => ['/users/guest/login'],
         ],

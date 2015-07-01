@@ -1,7 +1,8 @@
 <?php
 
-namespace modules\users\models;
+namespace modules\users\models\backend;
 
+use modules\users\models\NotSupportedException;
 use Yii;
 use common\helpers\Time;
 use yii\helpers\Html;

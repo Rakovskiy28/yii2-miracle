@@ -3,8 +3,8 @@
 namespace modules\users\controllers\backend;
 
 use Yii;
-use modules\users\models\Users;
-use modules\users\models\UsersSearch;
+use modules\users\models\backend\Users;
+use modules\users\models\backend\UsersSearch;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -128,7 +128,7 @@ class DefaultController extends Controller
     /**
      * Поиск пользователя, если не найден возвращаем 404 ошибку
      * @param integer $id
-     * @return Users the loaded model
+     * @return \modules\users\models\backend\Users the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
