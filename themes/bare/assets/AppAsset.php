@@ -8,8 +8,6 @@ class AppAsset extends AssetBundle
 {
     public $sourcePath = '@themes/bare/assets';
     public $css = [
-        'css/bootstrap.min.css',
-        'css/sb-admin.css',
         'font-awesome/css/font-awesome.min.css'
     ];
     public $js = [

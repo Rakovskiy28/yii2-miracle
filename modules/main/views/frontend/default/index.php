@@ -10,8 +10,8 @@ $this->title = 'Главная';
     </div>
     <div class="bs-example">
         <div class="jumbotron">
-            <h1>Поздравляем</h1>
-            <p>Установка успешно завершена!</p>
+            <h1>Поздравляем!</h1>
+            <p>Установка успешно завершена.</p>
             <p><a href="/backend" class="btn btn-primary btn-lg">Перейти в админку</a></p>
         </div>
     </div>

@@ -15,8 +15,17 @@ return [
         'main' => [
             'class' => 'modules\main\Module',
         ],
+        'users' => [
+            'class' => 'modules\users\Module',
+        ],
     ],
     'components' => [
+        'user' => [
+            'class' => 'modules\users\components\User',
+            'identityClass' => 'modules\users\models\frontend\Users',
+            'enableAutoLogin' => true,
+            'loginUrl' => ['/users/guest/login'],
+        ],
         'request' => [
             'baseUrl' => ''
         ],

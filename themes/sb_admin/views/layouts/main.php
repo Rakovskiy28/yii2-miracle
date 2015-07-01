@@ -42,21 +42,31 @@ AppAsset::register($this);
             <ul class="nav navbar-nav side-nav">
 
                 <?php if (Yii::$app->user->can('roles_view')): ?>
-                    <li><a href="<?= Url::to(['/rbac/roles']) ?>">&raquo; Роли пользователей</a></li>
+                    <li>
+                        <a href="<?= Url::to(['/rbac/roles']) ?>">&raquo; Роли пользователей</a>
+                    </li>
                 <?php endif ?>
 
                 <?php if (Yii::$app->user->can('rules_view')): ?>
-                    <li><a href="<?= Url::to(['/rbac/rules']) ?>">&raquo; Правила доступа</a></li>
+                    <li>
+                        <a href="<?= Url::to(['/rbac/rules']) ?>">&raquo; Правила доступа</a>
+                    </li>
                 <?php endif ?>
 
                 <?php if (Yii::$app->user->can('permissions_view')): ?>
-                    <li><a href="<?= Url::to(['/rbac']) ?>">&raquo; Права доступа</a></li>
+                    <li>
+                        <a href="<?= Url::to(['/rbac']) ?>">&raquo; Права доступа</a>
+                    </li>
                 <?php endif ?>
 
-                <li><a href="<?= Url::to(['/users']) ?>">&raquo; Пользователи</a></li>
-
+                <li>
+                    <a href="<?= Url::to(['/users']) ?>">&raquo; Пользователи</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right navbar-user">
+                <li>
+                    <a href="/"><i class="fa fa-sign-in"></i> Перейти на сайт</a>
+                </li>
                 <li class="dropdown user-dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= Yii::$app->user->identity->login ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">

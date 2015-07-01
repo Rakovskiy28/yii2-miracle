@@ -9,12 +9,6 @@ return [
     ],
     'language' => 'ru',
     'components' => [
-        'user' => [
-            'class' => 'modules\users\components\User',
-            'identityClass' => 'modules\users\models\backend\Users',
-            'enableAutoLogin' => true,
-            'loginUrl' => ['/users/guest/login'],
-        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,

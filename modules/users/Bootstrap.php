@@ -19,6 +19,7 @@ class Bootstrap implements BootstrapInterface
             [
                 'login' => 'users/guest/login',
                 'logout' => 'users/user/logout',
+                'registration' => 'users/guest/registration',
                 'users/create' => 'users/default/create',
                 'users/<id:\d+>' => 'users/default/view',
                 'users/update/<id:\d+>' => 'users/default/update',

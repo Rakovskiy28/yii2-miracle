@@ -3,7 +3,7 @@
 namespace modules\main\controllers\frontend;
 
 use Yii;
-use yii\web\Controller;
+use frontend\components\Controller;
 
 /**
  * Class DefaultController
