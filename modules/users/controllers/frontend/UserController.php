@@ -19,12 +19,28 @@ class UserController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['logout'],
                         'roles' => ['@'],
                     ]
                 ],
             ]
         ];
+    }
+
+    /**
+     * Настройки личного профиля
+     * @return string
+     */
+    public function actionUpdate()
+    {
+        $model = Yii::$app->user->identity;
+        $model->scenario = $model::SCENARIO_PROFILE;
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['/users/default/view', 'id' => $model->id]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**

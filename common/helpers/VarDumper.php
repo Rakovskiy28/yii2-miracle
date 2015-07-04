@@ -9,6 +9,6 @@ class VarDumper extends \yii\helpers\VarDumper
      */
     public static function dump($var, $depth = 10, $highlight = true)
     {
-        return self::dump($var, $depth, $highlight);
+        echo self::dumpAsString($var, $depth, $highlight);
     }
 }

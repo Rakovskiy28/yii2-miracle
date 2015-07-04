@@ -43,6 +43,9 @@ AppAsset::register($this);
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right navbar-user">
+                <li>
+                    <a href="<?= Yii::$app->urlManager->createUrl(['/users']) ?>"><i class="fa fa-users"></i> Пользователи</a>
+                </li>
                 <?php if (Yii::$app->user->isGuest): ?>
                     <li>
                         <a href="<?= Yii::$app->urlManager->createUrl(['/users/guest/login']) ?>"><i class="fa fa-lock"></i> Вход</a>
@@ -59,7 +62,7 @@ AppAsset::register($this);
                     <li class="dropdown user-dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= Yii::$app->user->identity->login ?><b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?= Yii::$app->urlManager->createUrl(['/users/default/update', 'id' => Yii::$app->user->id]) ?>"><i class="fa fa-gears"></i> Настройки</a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl(['/users/user/update']) ?>"><i class="fa fa-gears"></i> Настройки</a></li>
                             <li class="divider"></li>
                             <li><a href="<?= Yii::$app->urlManager->createUrl(['/users/user/logout']) ?>"><i class="fa fa-power-off"></i> Выход</a></li>
                         </ul>
