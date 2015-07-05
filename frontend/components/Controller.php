@@ -9,4 +9,5 @@ use Yii;
  * @package frontend\components
  */
 class Controller extends \yii\web\Controller
-{}
+{
+}

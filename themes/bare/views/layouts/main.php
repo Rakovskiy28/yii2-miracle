@@ -32,7 +32,8 @@ AppAsset::register($this);
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -44,32 +45,40 @@ AppAsset::register($this);
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right navbar-user">
                 <li>
-                    <a href="<?= Yii::$app->urlManager->createUrl(['/users']) ?>"><i class="fa fa-users"></i> Пользователи</a>
+                    <a href="<?= Yii::$app->urlManager->createUrl(['/users']) ?>"><i class="fa fa-users"></i>
+                        Пользователи</a>
                 </li>
                 <?php if (Yii::$app->user->isGuest): ?>
                     <li>
-                        <a href="<?= Yii::$app->urlManager->createUrl(['/users/guest/login']) ?>"><i class="fa fa-lock"></i> Вход</a>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['/users/guest/login']) ?>"><i
+                                class="fa fa-lock"></i> Вход</a>
                     </li>
                     <li>
-                        <a href="<?= Yii::$app->urlManager->createUrl(['/users/guest/registration']) ?>"><i class="fa fa-plus"></i> Регистрация</a>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['/users/guest/registration']) ?>"><i
+                                class="fa fa-plus"></i> Регистрация</a>
                     </li>
                 <?php else: ?>
                     <?php if (Yii::$app->user->can('backend_access')): ?>
                         <li>
-                            <a href="<?= Yii::$app->urlManager->createUrl(['/backend']) ?>"><i class="fa fa-th-large"></i> Админка</a>
+                            <a href="<?= Yii::$app->urlManager->createUrl(['/backend']) ?>"><i
+                                    class="fa fa-th-large"></i> Админка</a>
                         </li>
                     <?php endif; ?>
                     <li class="dropdown user-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= Yii::$app->user->identity->login ?><b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                                class="fa fa-user"></i> <?= Yii::$app->user->identity->login ?><b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?= Yii::$app->urlManager->createUrl(['/users/user/update']) ?>"><i class="fa fa-gears"></i> Настройки</a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl(['/users/user/update']) ?>"><i
+                                        class="fa fa-gears"></i> Настройки</a></li>
                             <li class="divider"></li>
-                            <li><a href="<?= Yii::$app->urlManager->createUrl(['/users/user/logout']) ?>"><i class="fa fa-power-off"></i> Выход</a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl(['/users/user/logout']) ?>"><i
+                                        class="fa fa-power-off"></i> Выход</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
             </ul>
-        </div><!-- /.navbar-collapse -->
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
 </nav>

@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
 class RolesForm extends Model
 {
     /**
-     * Сценарий редактирования
+     * Сценарий редактирования ролей
      */
     const SCENARIO_UPDATE = 'update';
 
@@ -22,42 +22,35 @@ class RolesForm extends Model
      * @var string
      */
     public $name;
-
     /**
      * Алиас роли
      * @var string
      */
     public $alias;
-
     /**
      * Предыдущий алиас роли
      * @var string
      */
     public $last_name;
-
     /**
      * Правило для роли
      * @var string
      */
     public $rule;
-
     /**
      * Массив прав доступа
      * @var array
      */
     public $permissions = [];
-
     /**
      * @var array
      */
     public $child_roles = [];
-
     /**
      * Родители роли
      * @var string
      */
     private static $child;
-
     /**
      * @var object
      */

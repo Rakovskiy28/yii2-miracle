@@ -29,6 +29,9 @@ use yii\helpers\ArrayHelper;
  */
 class Users extends ActiveRecord implements IdentityInterface
 {
+    /**
+     * Сценарий редактирования профиля
+     */
     const SCENARIO_PROFILE = 'profile';
 
     /**
@@ -36,19 +39,16 @@ class Users extends ActiveRecord implements IdentityInterface
      * @var string
      */
     public $old_password;
-
     /**
      * Новый пароль
      * @var string
      */
     public $new_password;
-
     /**
      * Повторяем новый пароль
      * @var string
      */
     public $new_password_repeat;
-
     /**
      * Все роли
      * @var array

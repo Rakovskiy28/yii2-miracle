@@ -68,15 +68,19 @@ AppAsset::register($this);
                     <a href="/"><i class="fa fa-sign-in"></i> Перейти на сайт</a>
                 </li>
                 <li class="dropdown user-dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?= Yii::$app->user->identity->login ?><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                            class="fa fa-user"></i> <?= Yii::$app->user->identity->login ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="<?= Url::to(['/users/default/update', 'id' => Yii::$app->user->id]) ?>"><i class="fa fa-user"></i> Настройки</a></li>
+                        <li><a href="<?= Url::to(['/users/default/update', 'id' => Yii::$app->user->id]) ?>"><i
+                                    class="fa fa-user"></i> Настройки</a></li>
                         <li class="divider"></li>
-                        <li><a href="<?= Url::to(['/users/user/logout']) ?>"><i class="fa fa-power-off"></i> Выход</a></li>
+                        <li><a href="<?= Url::to(['/users/user/logout']) ?>"><i class="fa fa-power-off"></i> Выход</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
-        </div><!-- /.navbar-collapse -->
+        </div>
+        <!-- /.navbar-collapse -->
     </nav>
 
     <div id="page-wrapper">
@@ -96,11 +100,14 @@ AppAsset::register($this);
                 ]) ?>
                 <?= $content ?>
             </div>
-        </div><!-- /.row -->
+        </div>
+        <!-- /.row -->
 
-    </div><!-- /#page-wrapper -->
+    </div>
+    <!-- /#page-wrapper -->
 
-</div><!-- /#wrapper -->
+</div>
+<!-- /#wrapper -->
 
 <?php $this->endBody() ?>
 </body>

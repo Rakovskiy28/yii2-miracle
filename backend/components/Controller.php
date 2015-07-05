@@ -32,7 +32,8 @@ class Controller extends \yii\web\Controller
     /**
      * @inheritdoc
      */
-    public function init(){
+    public function init()
+    {
         $this->layout = Yii::$app->user->isGuest || Yii::$app->user->can('backend_access') === false ? 'login' : 'main';
         parent::init();
     }

@@ -15,7 +15,7 @@ class m150704_150755_create_column_avatar extends Migration
         $this->dropColumn('{{%users}}', 'avatar');
         return true;
     }
-    
+
     /*
     // Use safeUp/safeDown to run migration code within a transaction
     public function safeUp()

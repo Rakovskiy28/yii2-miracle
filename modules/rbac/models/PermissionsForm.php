@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
 class PermissionsForm extends Model
 {
     /**
-     * Сценарий редактирования
+     * Сценарий редактирования прав доступа
      */
     const SCENARIO_UPDATE = 'update';
 
@@ -22,13 +22,11 @@ class PermissionsForm extends Model
      * @var string
      */
     public $name;
-
     /**
      * Алиас права
      * @var string
      */
     public $rule;
-
     /**
      * Предыдущий алиас права
      * @var string

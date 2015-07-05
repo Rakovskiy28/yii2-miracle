@@ -34,25 +34,21 @@ class LoginForm extends Model
      * @var string
      */
     public $login;
-
     /**
      * Пароль
      * @var string
      */
     public $password;
-
     /**
      * Запомнить меня
      * @var bool
      */
     public $rememberMe = true;
-
     /**
      * Капча
      * @var string
      */
     public $verifyCode;
-
     /**
      * Храним данные пользователя
      * @var object

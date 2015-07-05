@@ -30,7 +30,13 @@ use abeautifulsite\SimpleImage;
  */
 class Users extends ActiveRecord implements IdentityInterface
 {
+    /**
+     * Сценарий редактирования профиля
+     */
     const SCENARIO_PROFILE = 'profile';
+    /**
+     * Сценарий регистрации
+     */
     const SCENARIO_REGISTRATION = 'registration';
 
     /**
@@ -38,19 +44,16 @@ class Users extends ActiveRecord implements IdentityInterface
      * @var string
      */
     public $captcha;
-
     /**
      * Повторяем пароль
      * @var string
      */
     public $password_repeat;
-
     /**
      * Старый пароль
      * @var string
      */
     public $password_old;
-
     /**
      * Новый пароль
      * @var string
