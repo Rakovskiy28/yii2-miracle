@@ -16,10 +16,17 @@ return [
         ],
         'assetManager' => [
             'basePath' => '@webroot/assets',
-            'baseUrl' => '@web/assets'
+            'baseUrl' => '@web/assets',
+            'linkAssets' => true
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
+        ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'php:d M Y',
+            'datetimeFormat' => 'php:d M в H:i',
+            'timeFormat' => 'php:H:i:s',
         ],
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',

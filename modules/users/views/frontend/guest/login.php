@@ -10,6 +10,14 @@ use yii\captcha\Captcha;
 $this->title = 'Авторизация';
 $this->params['pageTitle'] = $this->title;
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => 'MiracleCMS, вход, авторизация, войти'
+]);
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => 'Авторизоваться на сайте, вход в личный кабинет, MiracleCMS'
+]);
 ?>
 
 <div class="row">

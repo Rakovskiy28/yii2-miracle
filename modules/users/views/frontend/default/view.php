@@ -10,14 +10,24 @@ $this->title = $model->login;
 $this->params['pageTitle'] = $this->title;
 $this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $model->login;
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => 'MiracleCMS, ' . $model->login . ', личная страничка, профиль, пользователь'
+]);
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => 'Личная страничка ' . $model->login . ', личные данные, профиль юзера'
+]);
 ?>
 
 <div class="col-lg-12">
     <div class="pull-left">
-        <?php if ($model->fileUrl !== null): ?>
-            <img src="<?= $model->fileUrl ?>" alt="<?= $model->login ?>"/>
+        <?php if ($model->getUrlAvatar(true) !== null): ?>
+            <a href="<?= $model->getUrlAvatar() ?>">
+                <img src="<?= $model->getUrlAvatar(true) ?>" alt="<?= $model->login ?>"/>
+            </a>
         <?php else: ?>
-            <img src="http://kinoreactor.ru/templates/Kinoreactor/dleimages/noavatar.png" alt=""/>
+            <img src="<?= Yii::$app->assetManager->getPublishedUrl('@themes/bare/assets/img/noavatar.png') ?>" alt=""/>
         <?php endif; ?>
     </div>
     <div class="col-lg-12">
@@ -28,10 +38,10 @@ $this->params['breadcrumbs'][] = $model->login;
             <strong>Пол:</strong> <?= $model->sex == 'w' ? 'Женский' : 'Мужской' ?>
         </div>
         <div>
-            <strong>Дата регистрации:</strong> <?= date('d/m/Y в H:i:s', $model->time_reg) ?>
+            <strong>Дата регистрации:</strong> <?= Yii::$app->formatter->asDatetime($model->time_reg) ?>
         </div>
         <div>
-            <strong>Последняя авторизация:</strong> <?= date('d/m/Y в H:i:s', $model->time_login) ?>
+            <strong>Последняя авторизация:</strong> <?= Yii::$app->formatter->asDatetime($model->time_login) ?>
         </div>
     </div>
 </div>

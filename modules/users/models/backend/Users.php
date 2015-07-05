@@ -12,7 +12,7 @@ use yii\helpers\ArrayHelper;
 
 /**
  * Class Users
- * @package modules\users\models
+ * @package modules\users\models\backend
  *
  * @property string $id
  * @property string $login
@@ -25,6 +25,7 @@ use yii\helpers\ArrayHelper;
  * @property string $role
  * @property string $sex
  * @property string $error_auth
+ * @property string $avatar
  */
 class Users extends ActiveRecord implements IdentityInterface
 {
@@ -61,6 +62,14 @@ class Users extends ActiveRecord implements IdentityInterface
     {
         $this->sex = empty($this->sex) ? 'm' : $this->sex;
         parent::init();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%users}}';
     }
 
     /**

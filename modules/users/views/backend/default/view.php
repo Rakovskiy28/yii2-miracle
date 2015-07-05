@@ -38,14 +38,8 @@ $this->params['breadcrumbs'][] = $model->login;
                 'attribute' => 'sex',
                 'value' => $model->sex === 'w' ? 'Женский' : 'Мужской',
             ],
-            [
-                'attribute' => 'time_reg',
-                'format' => ['date', 'php:d.m.Y в H:i:s']
-            ],
-            [
-                'attribute' => 'time_login',
-                'format' => ['date', 'php:d.m.Y в H:i:s']
-            ],
+            'time_reg:datetime',
+            'time_login:datetime',
             'ip',
             'ua'
         ],

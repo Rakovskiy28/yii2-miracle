@@ -46,6 +46,10 @@
     	root        /path/to/example.loc;
     	index       index.php;
     
+        location /files {
+              alias /path/to/example.loc/common/files/;
+        }
+        
     	location / {
     		if ($request_uri ~ "^/backend"){
     			rewrite ^/backend/(.*)$ /backend/web/$1;

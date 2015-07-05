@@ -44,6 +44,16 @@ class UserController extends Controller
     }
 
     /**
+     * Удаление аватара
+     * @return \yii\web\Response
+     */
+    public function actionDeleteAvatar()
+    {
+        $model = Yii::$app->user->identity->deleteAvatar(true);
+        return $this->redirect(['/users/user/update']);
+    }
+
+    /**
      * Выход
      * @return \yii\web\Response
      */

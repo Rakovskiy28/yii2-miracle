@@ -9,7 +9,7 @@ use modules\users\models\backend\Users;
 
 /**
  * Class UsersSearch
- * @package modules\users\models
+ * @package modules\users\models\backend
  *
  * @property string $id
  * @property string $login
@@ -22,6 +22,7 @@ use modules\users\models\backend\Users;
  * @property string $role
  * @property string $sex
  * @property string $error_auth
+ * @property string $avatar
  */
 class UsersSearch extends Users
 {
@@ -30,7 +31,7 @@ class UsersSearch extends Users
      */
     public static function tableName()
     {
-        return 'users';
+        return '{{%users}}';
     }
 
     /**

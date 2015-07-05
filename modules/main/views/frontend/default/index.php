@@ -2,6 +2,14 @@
 /* @var $this yii\web\View */
 
 $this->title = 'Главная';
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => 'MiracleCMS, CMS, Yii, Yii2, Framework'
+]);
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => 'MiracleCMS, CMS на Yii2, пример сайта на Yii'
+]);
 ?>
 
 <div class="col-lg-12">

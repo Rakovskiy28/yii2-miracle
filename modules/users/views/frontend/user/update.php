@@ -22,8 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
     <div class="form-group">
-        <?php if ($model->fileUrl !== null): ?>
-            <img src="<?= $model->fileUrl ?>" alt="<?= $model->login ?>"/>
+        <?php if ($model->getUrlAvatar(true) !== null): ?>
+            <a href="<?= $model->getUrlAvatar() ?>">
+                <img src="<?= $model->getUrlAvatar(true) ?>" alt="<?= $model->login ?>"/>
+            </a>
+            <div>
+                &raquo; <a href="<?= Yii::$app->urlManager->createUrl(['/users/user/delete-avatar']) ?>">Удалить аватар</a>
+            </div>
         <?php endif; ?>
         <?= $form->field($model, 'avatar')->fileInput() ?>
     </div>

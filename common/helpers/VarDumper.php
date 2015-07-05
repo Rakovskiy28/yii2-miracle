@@ -2,6 +2,10 @@
 
 namespace common\helpers;
 
+/**
+ * Class VarDumper
+ * @package common\helpers
+ */
 class VarDumper extends \yii\helpers\VarDumper
 {
     /**

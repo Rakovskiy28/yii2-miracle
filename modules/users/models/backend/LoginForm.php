@@ -12,7 +12,7 @@ use yii\web\User;
 
 /**
  * Class LoginForm
- * @package modules\users\models
+ * @package modules\users\models\backend
  *
  * @property string $id
  * @property string $login
@@ -25,6 +25,7 @@ use yii\web\User;
  * @property string $role
  * @property string $sex
  * @property string $error_auth
+ * @property string $avatar
  */
 class LoginForm extends Model
 {

@@ -9,7 +9,7 @@ use modules\users\models\frontend\Users;
 
 /**
  * Class UsersSearch
- * @package modules\users\models
+ * @package modules\users\models\frontend
  *
  * @property string $id
  * @property string $login
@@ -22,6 +22,7 @@ use modules\users\models\frontend\Users;
  * @property string $role
  * @property string $sex
  * @property string $error_auth
+ * @property string $avatar
  */
 class UsersSearch extends Users
 {
@@ -30,9 +31,7 @@ class UsersSearch extends Users
      */
     public static function tableName()
     {
-        // Todo Переписать везде под префиксы
-        // Todo Дописать поле аватар
-        return 'users';
+        return '{{%users}}';
     }
 
     /**
@@ -41,8 +40,8 @@ class UsersSearch extends Users
     public function rules()
     {
         return [
-            [['avatar'], 'integer'],
-            [['login'], 'safe'],
+            ['sex', 'in', 'range' => ['m', 'w'], 'message' => 'Укажите пол.'],
+            [['login', 'avatar'], 'safe'],
         ];
     }
 
@@ -74,11 +73,15 @@ class UsersSearch extends Users
         }
 
         if ($this->avatar){
-            $query->andFilterWhere('avatar NOT NULL');
+            $query->andFilterWhere(['!=', 'avatar', '0']);
         }
 
         $query->andFilterWhere([
             'id' => $this->id
+        ]);
+
+        $query->andFilterWhere([
+            'sex' => $this->sex
         ]);
 
         $query->andFilterWhere(['like', 'login', $this->login]);

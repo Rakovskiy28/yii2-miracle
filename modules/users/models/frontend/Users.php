@@ -2,17 +2,18 @@
 
 namespace modules\users\models\frontend;
 
-use common\behaviors\FileUploader;
 use modules\users\models\NotSupportedException;
 use Yii;
 use common\helpers\Time;
 use yii\helpers\Html;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use yii\web\UploadedFile;
+use abeautifulsite\SimpleImage;
 
 /**
  * Class Users
- * @package modules\users\models
+ * @package modules\users\models\frontend
  *
  * @property string $id
  * @property string $login
@@ -25,6 +26,7 @@ use yii\web\IdentityInterface;
  * @property string $role
  * @property string $sex
  * @property string $error_auth
+ * @property string $avatar
  */
 class Users extends ActiveRecord implements IdentityInterface
 {
@@ -55,19 +57,12 @@ class Users extends ActiveRecord implements IdentityInterface
      */
     public $password_new;
 
-    public function behaviors()
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
     {
-        return [
-            'FileUpload' => [
-                'class' => FileUploader::className(),
-                'attribute' => 'avatar',
-                'attributeField' => 'avatar',
-                'path' => '@files/users/avatars/',
-                'urlPath' => '@urlFiles/users/avatars/',
-                'name' => uniqid(),
-                'extension' => 'jpg'
-            ]
-        ];
+        return '{{%users}}';
     }
 
     /**
@@ -175,10 +170,75 @@ class Users extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Полный путь к аватарке
+     * @param bool $small Уменьшиная копия
+     * @param bool $exists Делать проверку на наличие файла или нет
+     * @return string
+     */
+    public function getPathAvatar($small = false, $exists = true)
+    {
+        $path = Yii::getAlias(Yii::$app->controller->module->filePath) .
+            ($small ? 'small_' : '') .
+            ($this->avatar ? $this->avatar : $this->oldAttributes['avatar']);
+        return is_file($path) || $exists === false ? $path : null;
+    }
+
+    /**
+     * URL к аватарке
+     * @param bool $small Уменьшиная копия
+     * @return string
+     */
+    public function getUrlAvatar($small = false)
+    {
+        if (is_file($this->getPathAvatar($small))){
+            return Yii::getAlias(Yii::$app->controller->module->fileUrl) . ($small ? 'small_' : '') . $this->avatar;
+        }
+        return null;
+    }
+
+    /**
+     * Удаление аватара
+     */
+    public function deleteAvatar($save = false)
+    {
+        if (is_file($this->getPathAvatar())){
+            unlink($this->getPathAvatar());
+        }
+        if (is_file($this->getPathAvatar(true))){
+            unlink($this->getPathAvatar(true));
+        }
+        $this->avatar = null;
+        if ($save){
+            $this->save(0);
+        }
+    }
+
+    /**
+     * Загружаем аватар
+     * @throws \Exception
+     */
+    private function uploadAvatar()
+    {
+        $avatar = UploadedFile::getInstance($this, 'avatar');
+        if ($avatar !== null){
+            $this->deleteAvatar();
+            $this->avatar = uniqid() . '.jpg';
+            if ($avatar->saveAs($this->getPathAvatar(false, false))){
+                $small = new SimpleImage($this->getPathAvatar());
+                $small->thumbnail(120, 150);
+                $small->save($this->getPathAvatar(true, false), 100, $avatar->extension);
+            }
+        }
+    }
+
+    /**
      * @inheritdoc
      */
     public function beforeSave($insert)
     {
+        if ($this->scenario == self::SCENARIO_PROFILE){
+            $this->uploadAvatar();
+        }
         if ($this->isNewRecord) {
             $this->password = Yii::$app->security->generatePasswordHash($this->password);
             $this->time_reg = Time::real();

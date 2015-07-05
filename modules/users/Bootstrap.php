@@ -28,6 +28,7 @@ class Bootstrap implements BootstrapInterface
         }else{
             $rules['registration'] = 'users/guest/registration';
             $rules['users/update'] = 'users/user/update';
+            $rules['users/delete-avatar'] = '/users/user/delete-avatar';
         }
 
         $app->urlManager->addRules($rules, false);

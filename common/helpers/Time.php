@@ -2,6 +2,10 @@
 
 namespace common\helpers;
 
+/**
+ * Class Time
+ * @package common\helpers
+ */
 class Time
 {
     /**

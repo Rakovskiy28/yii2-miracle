@@ -9,7 +9,7 @@ use yii\validators\Validator;
 
 /**
  * Class LoginForm
- * @package modules\users\models
+ * @package modules\users\models\frontend
  *
  * @property string $id
  * @property string $login
@@ -22,6 +22,7 @@ use yii\validators\Validator;
  * @property string $role
  * @property string $sex
  * @property string $error_auth
+ * @property string $avatar
  */
 class LoginForm extends Model
 {

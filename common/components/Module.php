@@ -2,6 +2,10 @@
 
 namespace common\components;
 
+/**
+ * Class Module
+ * @package common\components
+ */
 class Module extends \yii\base\Module
 {
     /**

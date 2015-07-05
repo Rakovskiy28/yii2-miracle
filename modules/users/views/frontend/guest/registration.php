@@ -10,6 +10,14 @@ use yii\captcha\Captcha;
 $this->title = 'Регистрация';
 $this->params['pageTitle'] = $this->title;
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => 'Регистрация, MiracleCMS, новый пользователь, добавиться'
+]);
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => 'Создать новый профиль, регистрация на сайте'
+]);
 ?>
 
 <div class="row col-lg-5">

@@ -22,10 +22,7 @@ $columns = [
             return isset($model->getRoles()[$model->role]) ? $model->getRoles()[$model->role] : null;
         }
     ],
-    [
-        'attribute' => 'time_login',
-        'format' => ['date', 'php:d.m.Y в H:i:s']
-    ],
+    'time_login:datetime',
     'ip'
 ];
 
