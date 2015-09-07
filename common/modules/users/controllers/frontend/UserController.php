@@ -3,7 +3,7 @@
 namespace modules\users\controllers\frontend;
 
 use Yii;
-use backend\components\Controller;
+use frontend\components\Controller;
 use yii\filters\AccessControl;
 
 class UserController extends Controller

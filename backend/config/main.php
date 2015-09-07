@@ -41,5 +41,18 @@ return [
             'theme' => 'themes\sb_admin\Theme'
         ],
     ],
+    'as access' => [
+        'class' => 'yii\filters\AccessControl',
+        'rules' => [
+            [
+                'allow' => true,
+                'actions' => ['login', 'error', 'captcha'],
+                'roles' => ['?'],
+            ], [
+                'allow' => true,
+                'roles' => ['@'],
+            ],
+        ],
+    ],
     'params' => $params,
 ];
