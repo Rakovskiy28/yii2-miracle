@@ -3,7 +3,7 @@
 
 If asset plugin not installed yet:
     
-- `composer global require "fxp/composer-asset-plugin:~1.1.1"
+- `composer global require "fxp/composer-asset-plugin:~1.1.1"`
 
 
 Install depends:
@@ -77,4 +77,5 @@ Nginx config:
             	include fastcgi_params;
         	}
     }
+    
 Do not forget change "/path/to/example.loc" and "example.loc" to your own.
