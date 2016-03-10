@@ -33,11 +33,27 @@ class Users extends ActiveRecord implements IdentityInterface
     /**
      * Сценарий редактирования профиля
      */
+
     const SCENARIO_PROFILE = 'profile';
     /**
      * Сценарий регистрации
      */
     const SCENARIO_REGISTRATION = 'registration';
+
+    /**
+     * Путь для сохранения файлов (аватарок)
+     */
+    const AVATAR_PATH = '@files/users/avatars/';
+
+    /**
+     * URL директории с аватарками
+     */
+    const AVATAR_URL = '@urlFiles/users/avatars/';
+
+    /**
+     * URL к аватарке по умолчанию
+     */
+    const DEFAULT_AVATAR_URL = '@urlFiles/users/avatar.jpg';
 
     /**
      * Код с картинки
@@ -137,7 +153,7 @@ class Users extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('findIdentityByAccessToken is not implemented.');
+        throw new \yii\base\NotSupportedException('findIdentityByAccessToken is not implemented.');
     }
 
     /**
@@ -180,7 +196,7 @@ class Users extends ActiveRecord implements IdentityInterface
      */
     public function getPathAvatar($small = false, $exists = true)
     {
-        $path = Yii::getAlias(Yii::$app->controller->module->filePath) .
+        $path = Yii::getAlias(self::AVATAR_PATH) .
             ($small ? 'small_' : '') .
             ($this->avatar ? $this->avatar : $this->oldAttributes['avatar']);
         return is_file($path) || $exists === false ? $path : null;
@@ -193,10 +209,10 @@ class Users extends ActiveRecord implements IdentityInterface
      */
     public function getUrlAvatar($small = false)
     {
-        if (is_file($this->getPathAvatar($small))){
-            return Yii::getAlias(Yii::$app->controller->module->fileUrl) . ($small ? 'small_' : '') . $this->avatar;
+        if (is_file($this->getPathAvatar($small))) {
+            return Yii::getAlias(self::AVATAR_URL) . ($small ? 'small_' : '') . $this->avatar;
         }
-        return null;
+        return Yii::getAlias(self::DEFAULT_AVATAR_URL);
     }
 
     /**
@@ -204,14 +220,14 @@ class Users extends ActiveRecord implements IdentityInterface
      */
     public function deleteAvatar($save = false)
     {
-        if (is_file($this->getPathAvatar())){
+        if (is_file($this->getPathAvatar())) {
             unlink($this->getPathAvatar());
         }
-        if (is_file($this->getPathAvatar(true))){
+        if (is_file($this->getPathAvatar(true))) {
             unlink($this->getPathAvatar(true));
         }
         $this->avatar = null;
-        if ($save){
+        if ($save) {
             $this->save(0);
         }
     }
@@ -223,10 +239,10 @@ class Users extends ActiveRecord implements IdentityInterface
     private function uploadAvatar()
     {
         $avatar = UploadedFile::getInstance($this, 'avatar');
-        if ($avatar !== null){
+        if ($avatar !== null) {
             $this->deleteAvatar();
             $this->avatar = uniqid() . '.jpg';
-            if ($avatar->saveAs($this->getPathAvatar(false, false))){
+            if ($avatar->saveAs($this->getPathAvatar(false, false))) {
                 $small = new SimpleImage($this->getPathAvatar());
                 $small->thumbnail(120, 150);
                 $small->save($this->getPathAvatar(true, false), 100, $avatar->extension);
@@ -239,7 +255,7 @@ class Users extends ActiveRecord implements IdentityInterface
      */
     public function beforeSave($insert)
     {
-        if ($this->scenario == self::SCENARIO_PROFILE){
+        if ($this->scenario == self::SCENARIO_PROFILE) {
             $this->uploadAvatar();
         }
         if ($this->isNewRecord) {
@@ -254,17 +270,6 @@ class Users extends ActiveRecord implements IdentityInterface
 
         $this->login = Html::encode($this->login);
         return parent::beforeSave($insert);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function afterSave($insert, $changedAttributes)
-    {
-        if ($this->scenario == self::SCENARIO_REGISTRATION) {
-            Yii::$app->user->login($this);
-        }
-        parent::afterSave($insert, $changedAttributes);
     }
 
     /**

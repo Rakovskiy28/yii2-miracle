@@ -37,10 +37,10 @@ class GuestController extends Controller
         return [
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
-                'height' => 20,
-                'width' => 90,
-                'padding' => 0,
-                'offset' => 3,
+                'height' => 22,
+                'width' => 120,
+                'padding' => -2,
+                'offset' => 5,
                 'transparent' => true
             ]
         ];
@@ -69,9 +69,9 @@ class GuestController extends Controller
     public function actionRegistration()
     {
         $model = new Users();
-        $model->scenario = $model::SCENARIO_REGISTRATION;
+        $model->scenario = Users::SCENARIO_REGISTRATION;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save() && Yii::$app->user->login($model)) {
             return $this->redirect(['/']);
         } else {
             return $this->render('registration', [

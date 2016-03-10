@@ -39,7 +39,7 @@ $this->registerMetaTag([
     <div class="form-group">
         <?= $form->field($model, 'captcha')->widget(Captcha::className(), [
             'captchaAction' => '/users/guest/captcha',
-            'template' => '<div class="form-group input-group">{input}<span class="input-group-addon">{image}</span></div>',
+            'template' => '<div class="form-group input-group input-group-lg">{input}<span class="input-group-addon">{image}</span></div>',
         ]) ?>
     </div>
 
