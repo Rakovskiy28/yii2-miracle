@@ -11,17 +11,19 @@ use common\helpers\Time;
  */
 class User extends \yii\web\User
 {
-    /**
-     * @inheritdoc
-     */
+
+    public function beforeLogin($identity, $cookieBased, $duration)
+    {
+        return parent::beforeLogin($identity, $cookieBased, $duration);
+    }
+
     public function afterLogin($identity, $cookieBased, $duration)
     {
         $identity->time_login = Time::real();
         $identity->ip = Yii::$app->request->getUserIP();
         $identity->ua = Yii::$app->request->getUserAgent();
         $identity->save(0);
-
-        \yii\web\User::afterLogin($identity, $cookieBased, $duration);
+        parent::afterLogin($identity, $cookieBased, $duration);
     }
 
 }

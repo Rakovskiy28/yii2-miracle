@@ -1,6 +1,6 @@
 <?php
 return [
-    'name' => 'MiracleCMS',
+    'name' => 'Miracle',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'defaultRoute' => 'main/default',
     'bootstrap' => [
