@@ -2,13 +2,10 @@
 
 namespace modules\users\models\backend;
 
-use modules\users\models\backend\Users;
+use common\helpers\Time;
 use Yii;
 use yii\base\Model;
-use yii\captcha\CaptchaValidator;
-use yii\helpers\VarDumper;
 use yii\validators\Validator;
-use yii\web\User;
 
 /**
  * Class LoginForm

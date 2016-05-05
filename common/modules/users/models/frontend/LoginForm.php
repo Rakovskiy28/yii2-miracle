@@ -2,16 +2,15 @@
 
 namespace modules\users\models\frontend;
 
-use modules\users\models\frontend\Users;
 use Yii;
 use modules\users\models\backend\LoginForm as Model;
-use yii\validators\Validator;
+
 
 /**
  * Class LoginForm
  * @package modules\users\models\frontend
  *
- * @property string $id
+ * @property integer $id
  * @property string $login
  * @property string $password
  * @property string $auth_key
@@ -21,7 +20,7 @@ use yii\validators\Validator;
  * @property string $ua
  * @property string $role
  * @property string $sex
- * @property string $error_auth
+ * @property integer $error_auth
  * @property string $avatar
  */
 class LoginForm extends Model

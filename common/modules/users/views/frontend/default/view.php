@@ -22,13 +22,9 @@ $this->registerMetaTag([
 
 <div class="col-lg-12">
     <div class="pull-left">
-        <?php if ($model->getUrlAvatar(true) !== null): ?>
-            <a href="<?= $model->getUrlAvatar() ?>">
-                <img src="<?= $model->getUrlAvatar(true) ?>" alt="<?= $model->login ?>"/>
-            </a>
-        <?php else: ?>
-            <img src="<?= Yii::$app->assetManager->getPublishedUrl('@themes/bare/assets/img/noavatar.png') ?>" alt=""/>
-        <?php endif; ?>
+        <a href="<?= $model->getUrlAvatar() ?>">
+            <img src="<?= $model->getUrlAvatar() ?>" alt="<?= $model->login ?>"/>
+        </a>
     </div>
     <div class="col-lg-12">
         <div>

@@ -1,40 +1,38 @@
-##Порядок установки
+## Install
 
 
-Переходим в папку с проектом
+If asset plugin not installed yet:
     
-- `cd path/to/project`
-
-Устанавливаем asset плагин
-    
-- `composer global require "fxp/composer-asset-plugin:1.0.0"`
+- `composer global require "fxp/composer-asset-plugin:~1.1.1"`
 
 
-Устанавливаем composer
+Install depends:
 
 - `composer install`
 
 
-Устанавливаем ФВ
+Install yii2
 
 - `php init`
+- `0`
+- `yes`
 
 
-Выставляем права доступа на RBAC
+RBAC files:
 
-- `chmod 666 modules/rbac/data/assignments.php`
-- `chmod 666 modules/rbac/data/items.php`
-- `chmod 666 modules/rbac/data/rules.php`
+- `chmod 666 common/modules/rbac/data/assignments.php`
+- `chmod 666 common/modules/rbac/data/items.php`
+- `chmod 666 common/modules/rbac/data/rules.php`
 
 
-Прописываем данные к БД в /common/config/main-local.php
+Fill DB access /common/config/main-local.php
 
-Выполняем миграции
+Migrations
     
 - `php yii migrate --migrationPath=@modules/users/migrations`
 
 
-Если у вас Nginx прописываем конфиг
+Nginx config:
 
     server {
     	charset utf-8;
@@ -79,6 +77,5 @@
             	include fastcgi_params;
         	}
     }
-
-###Внимание!
-Не забудьте заменить директорию с сайтом "/path/to/example.loc" и домен "example.loc"
+    
+Do not forget change "/path/to/example.loc" and "example.loc" to your own.
